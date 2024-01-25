@@ -66,7 +66,7 @@ namespace Clinic.Service
             return availableSlots;
         }
 
-        private bool IsTimeSlotBooked(Guid doctorId, DateTime timeSlot)
+        private bool IsTimeSlotBooked(Guid doctorId,     DateTime timeSlot)
         {
             return _applicationDBcontext.Visits
                 .Any(da => da.Id == doctorId && da.VisitsApientment == timeSlot);

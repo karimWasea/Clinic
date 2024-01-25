@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace Clinic.Abstract
 {
-    public interface IClinic   :IRepository<ClinicVm>
+    public interface IRepository<T>  
     {
-     }
+        void Save(T entity);
+        T GetById(Guid Id);
+    }
 }

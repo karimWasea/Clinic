@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Clinic.Abstract\Clinic.Abstract.csproj" />
+    <ProjectReference Include="..\ClinicUtilities\ClinicUtilities.csproj" />
     <ProjectReference Include="..\DataAccesslayer\Clinic.DataAccesslayer.csproj" />
   </ItemGroup>
 

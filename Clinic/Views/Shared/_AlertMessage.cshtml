@@ -1,0 +1,33 @@
+﻿@if (TempData.ContainsKey("Message"))
+{
+    @if (TempData.ContainsKey("MessageType") && TempData["MessageType"].ToString() == "Save")
+    {
+        <div class="container text-end">
+            <div class="alert alert-dismissible alert-primary" style="height:50px; width:300px;">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                @TempData["Message"]
+                <strong></strong> <a href="#" class="alert-link"></a>
+            </div>
+        </div>
+    }
+    else if (TempData.ContainsKey("MessageType") && TempData["MessageType"].ToString() == "Edit")
+    {
+        <div class="container text-end">
+            <div class="alert alert-dismissible alert-success" style="height:50px; width:300px;">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                @TempData["Message"]
+                <strong></strong> <a href="#" class="alert-link"></a>
+            </div>
+        </div>
+    }
+    else if (TempData.ContainsKey("MessageType") && TempData["MessageType"].ToString() == "Delete")
+    {
+        <div class="container text-end">
+            <div class="alert alert-dismissible alert-danger" style="height:50px; width:300px;">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                @TempData["Message"]
+                <strong></strong> <a href="#" class="alert-link"></a>
+            </div>
+        </div>
+    }
+}

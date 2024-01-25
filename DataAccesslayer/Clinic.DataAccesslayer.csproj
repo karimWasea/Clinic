@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Clinic.Models\Clinic.Models.csproj" />
     <ProjectReference Include="..\ClinicUtilities\ClinicUtilities.csproj" />
   </ItemGroup>
 

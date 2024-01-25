@@ -1,22 +1,30 @@
-html {
-  font-size: 14px;
+ body {
+    background-color: #e6ffe6; /* Light green background */
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.glass-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.glass-input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-bottom: 2px solid #00cc99; /* Green border for inputs */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.button-group {
+    text-align: center;
 }
 
-body {
-  margin-bottom: 60px;
+/* Additional styling for checkbox input */
+.form-check-input {
+    margin-top: 7px; /* Adjust alignment of checkbox */
 }
+
+ 

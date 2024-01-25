@@ -20,6 +20,8 @@ namespace Clinic
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<UnitOfWork>();
             builder.Services.AddTransient<lookupServess>();
+            builder.Services.AddTransient<BaseServess>();
+            builder.Services.AddTransient<ClinicServess>();
 
 
             var app = builder.Build();
@@ -37,11 +39,33 @@ namespace Clinic
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            //app.MapControllerRoute(
+            //name: "default",
+            //pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
+
+
+
+
+
+
+            app.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+            //app.MapControllerRoute(
+            //       name: "HR",
+            //       pattern: "{area=Admin}/{controller=Employee}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
             app.Run();
         }

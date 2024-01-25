@@ -1,6 +1,6 @@
 ﻿namespace Clincic.DataAccesslayer
 {
-    public class Clinic : BaseEntity
+    public   partial class Clinic : BaseEntity
     {
 
         public string clinicName{ get; set; }

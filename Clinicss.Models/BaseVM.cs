@@ -4,8 +4,8 @@
     {
         public int? PagNumber { get; set; }
 
-        public Guid Id { get; set; }
-        public string ActionName { get; set; }  
+        public Guid Id { get; set; }= default;
+        public string ActionName { get; set; } = string.Empty; 
     }
 
 }

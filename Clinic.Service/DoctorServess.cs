@@ -47,10 +47,12 @@ namespace Clinic.Service
                 Age = doctor.Age,
                 Birthdate = doctor.Birthdate,
                 Salary = doctor.Salary,
-                Imgpath = doctor.Imgpath,
-                Gender = doctor.Gender,
-                Contractpath = doctor.Contractpath,
-                Endshift = doctor.DoctorSHifts.Select(ds => ds.SHifts.EndShift).FirstOrDefault(),
+                 Gender = doctor.Gender,
+                  Email = doctor.Email,
+                   Title = doctor.Title,
+                    HiringDate = doctor.HiringDate,
+                     
+                 Endshift = doctor.DoctorSHifts.Select(ds => ds.SHifts.EndShift).FirstOrDefault(),
                 StartShif = doctor.DoctorSHifts.Select(ds => ds.SHifts.StartShift).FirstOrDefault()
             }).FirstOrDefault();
  
@@ -106,10 +108,11 @@ public IPagedList<DoctorVm> Search(DoctorVm doctorSm)
             Age = doctor.Age,
             Birthdate = doctor.Birthdate,
             Salary = doctor.Salary,
-            Imgpath = doctor.Imgpath,
-            Gender = doctor.Gender,
-            Contractpath = doctor.Contractpath,
-            Endshift = doctor.DoctorSHifts.Select(ds => ds.SHifts.EndShift).FirstOrDefault(),
+             Gender = doctor.Gender,
+             Email = doctor.Email,
+             Title = doctor.Title,
+             HiringDate = doctor.HiringDate,
+             Endshift = doctor.DoctorSHifts.Select(ds => ds.SHifts.EndShift).FirstOrDefault(),
              StartShif= doctor.DoctorSHifts.Select(ds => ds.SHifts.StartShift).FirstOrDefault()
         }).Distinct();  
 

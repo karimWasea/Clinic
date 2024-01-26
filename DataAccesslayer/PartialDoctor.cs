@@ -17,12 +17,14 @@ namespace Clincic.DataAccesslayer
                 Age = doctor.Age,       
                 Birthdate = doctor.Birthdate,  
                 
-                Contractpath = doctor.Contractpath,
-                   Gender = doctor.Gender,   
-                Imgpath = doctor.Imgpath   ,
-                Name = doctor.Name, NationalID = doctor.NationalID,
+                    Gender = doctor.Gender,   
+                 Name = doctor.Name, NationalID = doctor.NationalID,
                 Salary = doctor.Salary,  
-                Specialty = doctor.Specialty,    
+                Specialty = doctor.Specialty, 
+                 Email = doctor.Email,
+                  HiringDate = doctor.HiringDate,
+                   Title = doctor.Title
+                   , 
                     
 
 

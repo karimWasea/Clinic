@@ -11,8 +11,7 @@ namespace Clincic.DataAccesslayer;
 public class Employee :Person
 {
        public decimal Salary { get; set; }
-      public string Imgpath { get; set; }
-      public string Contractpath { get; set; }
+ 
       public string Title { get; set; }
       public string Email { get; set; }
       public DateTime HiringDate { get; set; }

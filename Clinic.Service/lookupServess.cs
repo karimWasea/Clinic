@@ -2,6 +2,8 @@
 
 using Clinic.Abstract;
 
+using Clinicss.Models;
+
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Clinic.Service
@@ -22,7 +24,17 @@ namespace Clinic.Service
 
 
 
-
+        public List<SelectListItem> Gender()
+        {
+            return Enum.GetValues(typeof(Gender))
+                                   .Cast<Gender>()
+                                   .Select(hour => new SelectListItem
+                                   {
+                                       Value = ((int)hour).ToString(),
+                                       Text = hour.ToString()
+                                   })
+                                   .ToList();
+        }
 
 
         public List<SelectListItem> AvailableAppointments(Guid doctorId, int chosenDayOffset = 5)

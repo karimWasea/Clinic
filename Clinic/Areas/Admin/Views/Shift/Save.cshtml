@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Save";
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Cloudscribe.Web.Pagination
+
+@model Clinicss.Models.SHiftsVm
+
+
+<partial name="_AlertMessage" />
+
+<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+    <div class="container mt-5 glass-container col-md-7">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>Manage Shifts</h1>
+
+                <form asp-action="Save" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                     
+                    @Html.AntiForgeryToken()
+ 
+                    <div class="form-row form-group col-md-10">
+                        <div class="form-control glass-input col-md-4">
+                            <label asp-for="Name">Shift Name:</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-control glass-input col-md-4">
+                            <label asp-for="StartShift">Start Shift:</label>
+                            <input asp-for="StartShift" class="form-control" />
+                            <span asp-validation-for="StartShift" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-control glass-input col-md-4">
+                            <label asp-for="EndShift">End Shift:</label>
+                            <input asp-for="EndShift" class="form-control" />
+                            <span asp-validation-for="EndShift" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            @if (Model != null && Model.Id != null)
+                            {
+                                <text>Edit</text>
+                            }
+                            else
+                            {
+                                <text>Add New</text>
+                            }
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <link href="~/css/site.css" rel="stylesheet" />
+
+
+}

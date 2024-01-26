@@ -1,6 +1,5 @@
 ﻿using Clinic.Abstract;
-using Clinic.Models.VModels;
-
+ 
 using ClinicUtilities;
 
 using System;
@@ -11,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace Clinic.Service;
 using Clincic.DataAccesslayer;
+
+using Clinicss.Models;
 
 public class ClinicServess : PaginationHelper<ClinicVm>, IClinic
 

@@ -11,4 +11,8 @@
     <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Clinicss.Models\Clinicss.Models.csproj" />
+  </ItemGroup>
+
 </Project>

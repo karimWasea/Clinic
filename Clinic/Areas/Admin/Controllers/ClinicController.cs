@@ -1,6 +1,7 @@
 ﻿using Clinic.Abstract;
-using Clinic.Models.VModels;
-using Clinic.Service;
+ using Clinic.Service;
+
+using Clinicss.Models;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

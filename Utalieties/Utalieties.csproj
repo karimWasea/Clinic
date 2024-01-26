@@ -7,13 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PagedList" Version="1.17.0" />
-    <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Clinic.Abstract\Clinic.Abstract.csproj" />
-    <ProjectReference Include="..\DataAccesslayer\Clinic.DataAccesslayer.csproj" />
+    <ProjectReference Include="..\Clinicss.Models\Clinicss.Models.csproj" />
   </ItemGroup>
 
 </Project>

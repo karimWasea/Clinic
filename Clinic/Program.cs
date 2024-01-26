@@ -26,7 +26,7 @@ namespace Clinic
             builder.Services.AddTransient<PatienteServess>();
             builder.Services.AddTransient<DoctorServess>();
             builder.Services.AddTransient<SHiftsServess>();
-            builder.Services.AddTransient<VisitServess>();
+            builder.Services.AddScoped<VisitServess>();
             builder.Services.AddTransient<DoctorShiftervess>();
 
 

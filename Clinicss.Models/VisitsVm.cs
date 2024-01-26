@@ -1,18 +1,27 @@
-﻿using System.Reflection;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+using System.Reflection;
 
 namespace Clinicss.Models
 {
     public class VisitsVm : BaseVM
     {
-          
-            public DateTime VisitsApientment { get; set; }
+        public IEnumerable<SelectListItem> ALLApintmentSlots { get; set; } = Enumerable.Empty<SelectListItem>();
+        public IEnumerable<SelectListItem> ALLVisisttype { get; set; } = Enumerable.Empty<SelectListItem>();
+        public IEnumerable<SelectListItem> ALLVisitStutus { get; set; } = Enumerable.Empty<SelectListItem>();
+        public IEnumerable<SelectListItem> gender { get; set; } = Enumerable.Empty<SelectListItem>();
 
-            // Navigation property for many-to-many relationship
-            public VisitStutus Visisttype { get; set; }
-            public VisitStutus VisitStutus { get; set; }
-        public string Name { get; set; }
+        public DateTime VisitsApientment { get; set; }
+
+        // Navigation property for many-to-many relationship
+        public Visisttype Visisttype { get; set; }
+        public VisitStatus VisitStutus { get; set; }
+        public string patientName { get; set; }
+        public string doctorName { get; set; }
+        public string FilterBy { get; set; } =string.Empty;
         public int Age { get; set; }
         public Guid patientid { get; set; }
+        public Guid doctorid { get; set; }
         public string Address { get; set; }
         public string NationalID { get; set; }
         public string PhoneNumber { get; set; }

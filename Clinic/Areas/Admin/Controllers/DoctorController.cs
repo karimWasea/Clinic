@@ -21,11 +21,11 @@ namespace Clinic.Areas.Admin.Controllers
             _UnitOfWork = unitOfWork;   
         }
         // GET: ClinicController
-        public IActionResult Index(int? pageNuber, string FilterBy)
+        public IActionResult Index(int? page, string FilterBy)
         {
             var doctrvm = new DoctorVm();
             doctrvm.FilterBy = FilterBy;
-            doctrvm.PagNumber = pageNuber;
+            doctrvm.PagNumber = page;
             return View(_UnitOfWork._Idoctor.Search(doctrvm));
         }
 

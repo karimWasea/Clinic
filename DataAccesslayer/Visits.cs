@@ -13,11 +13,13 @@ namespace Clincic.DataAccesslayer
          public DateTime VisitsApientment { get; set; }
 
         // Navigation property for many-to-many relationship
-        public VisitStutus  Visisttype { get; set; } 
-        public VisitStutus   VisitStutus { get; set; } 
+        public Visisttype Visisttype { get; set; } 
+        public VisitStatus   VisitStutus { get; set; } 
+         public  Guid patientid     { get; set; } 
+         public  Guid DoctorId     { get; set; } 
         public Patient    Patient { get; set; } 
-       public virtual ICollection<DoctorSHifts> DoctorShifts { get; set; }
-    }
+        public Doctor    Doctor { get; set; } 
+     }
 
 }
 

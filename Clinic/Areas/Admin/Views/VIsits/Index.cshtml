@@ -1,15 +1,15 @@
-﻿@model PagedList.IPagedList<Clinicss.Models.DoctorVm>
+﻿@model PagedList.IPagedList<Clinicss.Models.VisitsVm>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "All Doctors";
+    ViewData["Title"] = "All visits";
 }
 
 <!-- Panel for Searching -->
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Search Doctors</h3>
+        <h3 class="panel-title">Search visits</h3>
     </div>
     <div class="panel-body">
         <form asp-action="Index" method="get" class="form-inline">
@@ -24,11 +24,11 @@
     </div>
 </div>
 <br />
- 
+
 
 <a asp-action="Save" class="btn btn-success">
     <i class="fas fa-plus"></i> <!-- Font Awesome icon for add -->
-    Add New Doctor
+    Add New visit
 </a>
 <br />
 <br />
@@ -36,41 +36,38 @@
     <table class="table table-hover" style="background-color: lightgreen;">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Start Shift</th>
-                <th>End Shift</th>
+                <th>patientName</th>
+                <th>doctorName</th>
+                <th>VisitsDate</th>
                 <th>Gender</th>
-                <th>Title</th>
+                <th>Adress</th>
                 <th>Email</th>
-                <th>Specialty</th>
-                <th>Actions</th>
+                <th>VisitType</th>
+                <th>VisitStuts</th>
+                  <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var doctor in Model)
+            @foreach (var visit in Model)
             {
                 <tr class="patient">
                     <!-- Add class for JavaScript search functionality -->
-                    <td>@doctor.Name</td>
-                     <td>@doctor.StartShif.ToShortTimeString()</td>
-                    <td>@doctor.Endshift.ToShortTimeString()</td>
-                    <td>@doctor.Gender</td>
-                    <td>@doctor.Title</td>
-                    <td>@doctor.Email</td>
-                    <td>@doctor.Specialty</td>
-                    <td>
-                        <a asp-action="Save" asp-route-id="@doctor.Id" class="btn btn-primary">
+                    <td>@visit.patientName</td>
+                    <td>@visit.doctorName</td>
+                    <td>@visit.VisitsApientment.ToShortTimeString()</td>
+                     <td>@visit.Gender</td>
+                    <td>@visit.Address</td>
+                    <td>@visit.Email</td>
+
+                    <td>@visit.Visisttype</td>
+                    <td>@visit.VisitStutus</td>
+                    <td>@visit.Address</td>
+                     <td>
+                        <a asp-action="Save" asp-route-id="@visit.Id" class="btn btn-primary">
                             <i class="fas fa-edit"></i>  Edit
                         </a>
 
-                        <a class="btn btn-primary" asp-area="Admin" asp-controller="DctorShift" asp-action="Save"
-                           asp-route-Doctorid="@doctor.Id">
-                           <i class="fas fa-trash"></i> AddShift
-                        </a>
-
-                        <a asp-area="Admin" asp-controller="VIsits" asp-action="CreatApiontment" asp-route-Doctorid="@doctor.Id" class="btn btn-primary">
-                            <i class="fas fa-trash"></i>  CreatAppiontment
-                        </a>
+                        
                     </td>
                 </tr>
             }

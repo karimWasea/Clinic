@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.DataAccesslayer.Migrations
 {
     [DbContext(typeof(ApplicationDBcontext))]
-    [Migration("20240126153313_init2")]
-    partial class init2
+    [Migration("20240126194411_init8")]
+    partial class init8
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,16 +62,11 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<Guid>("SHiftsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("VisitsId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("SHiftsId");
-
-                    b.HasIndex("VisitsId");
 
                     b.ToTable("DoctorSHifts");
                 });
@@ -126,6 +121,9 @@ namespace Clinic.DataAccesslayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("clinicid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
@@ -151,7 +149,7 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DoctorId")
+                    b.Property<Guid?>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
@@ -207,10 +205,7 @@ namespace Clinic.DataAccesslayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PatientId")
+                    b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Visisttype")
@@ -222,11 +217,14 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("VisitsApientment")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("patientid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("patientid");
 
                     b.ToTable("Visits");
                 });
@@ -235,14 +233,11 @@ namespace Clinic.DataAccesslayer.Migrations
                 {
                     b.HasBaseType("Clincic.DataAccesslayer.Employee");
 
-                    b.Property<Guid>("ClinicId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Specialty")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("ClinicId");
+                    b.HasIndex("clinicid");
 
                     b.HasDiscriminator().HasValue("Doctor");
                 });
@@ -261,10 +256,6 @@ namespace Clinic.DataAccesslayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Clincic.DataAccesslayer.Visits", null)
-                        .WithMany("DoctorShifts")
-                        .HasForeignKey("VisitsId");
-
                     b.Navigation("Doctor");
 
                     b.Navigation("SHifts");
@@ -272,26 +263,26 @@ namespace Clinic.DataAccesslayer.Migrations
 
             modelBuilder.Entity("Clincic.DataAccesslayer.Patient", b =>
                 {
-                    b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
+                    b.HasOne("Clincic.DataAccesslayer.Doctor", null)
                         .WithMany("Patients")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
+                        .HasForeignKey("DoctorId");
                 });
 
             modelBuilder.Entity("Clincic.DataAccesslayer.Visits", b =>
                 {
-                    b.HasOne("Clincic.DataAccesslayer.Doctor", null)
+                    b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
                         .WithMany("Visits")
-                        .HasForeignKey("DoctorId");
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Clincic.DataAccesslayer.Patient", "Patient")
                         .WithMany("Visits")
-                        .HasForeignKey("PatientId")
+                        .HasForeignKey("patientid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doctor");
 
                     b.Navigation("Patient");
                 });
@@ -300,7 +291,7 @@ namespace Clinic.DataAccesslayer.Migrations
                 {
                     b.HasOne("Clincic.DataAccesslayer.Clinic", "Clinic")
                         .WithMany("Doctors")
-                        .HasForeignKey("ClinicId")
+                        .HasForeignKey("clinicid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -318,11 +309,6 @@ namespace Clinic.DataAccesslayer.Migrations
                 });
 
             modelBuilder.Entity("Clincic.DataAccesslayer.SHifts", b =>
-                {
-                    b.Navigation("DoctorShifts");
-                });
-
-            modelBuilder.Entity("Clincic.DataAccesslayer.Visits", b =>
                 {
                     b.Navigation("DoctorShifts");
                 });

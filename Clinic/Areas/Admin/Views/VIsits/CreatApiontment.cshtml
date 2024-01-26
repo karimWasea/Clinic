@@ -1,0 +1,211 @@
+﻿@{
+    ViewData["Title"] = "Save";
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Cloudscribe.Web.Pagination
+
+@model Clinicss.Models.VisitsVm
+
+<partial name="_AlertMessage"/>
+
+<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+    <div class="container mt-5 glass-container col-md-7">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>Create ApiontMent</h1>
+
+                <form id="saveDoctorForm" asp-action="CreatApiontment" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    @Html.AntiForgeryToken()
+                    <input asp-for="patientid" type="hidden" class="glass-input form-control" />
+                    <input asp-for="doctorid" type="hidden" class="glass-input form-control" />
+
+                  
+                    <div class="row">
+                             <div class="form-group col-md-6">
+                                <label asp-for="doctorName">Username:</label>
+                                <input asp-for="doctorName" class="glass-input form-control" readonly />
+                                <span asp-validation-for="doctorName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="patientName">Address:</label>
+                                <input asp-for="patientName" class="glass-input form-control" />
+                                <span asp-validation-for="patientName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    
+ 
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Address">Address:</label>
+                            <input asp-for="Address" class="glass-input form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="PhoneNumber">Specialty:</label>
+                            <input asp-for="PhoneNumber" class="glass-input form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="NationalID">NationalID:</label>
+                            <input asp-for="NationalID" class="glass-input form-control" />
+                            <span asp-validation-for="NationalID" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Email">Email:</label>
+                            <input asp-for="Email" class="glass-input form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                 
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Birthdate">Birthdate:</label>
+                            <input asp-for="Birthdate" class="glass-input form-control" />
+                            <span asp-validation-for="Birthdate" class="text-danger"></span>
+                        </div>
+
+
+
+
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Age">Age:</label>
+                            <input asp-for="Age" class="glass-input form-control" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Visisttype">Visisttype:</label>
+                            <select asp-for="Visisttype" class="glass-select form-control" asp-items="@Model.ALLVisisttype">
+                                <option value="">Select Visisttype</option>
+                            </select>
+                            <span asp-validation-for="VisitStutus" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="VisitStutus">VisitStutus:</label>
+                            <select asp-for="VisitStutus" class="glass-select form-control" asp-items="@Model.ALLVisitStutus">
+                                <option value="">Select Stutus</option>
+                            </select>
+                            <span asp-validation-for="Visisttype" class="text-danger"></span>
+                        </div>
+                    
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Gender">VisitStutus:</label>
+                            <select asp-for="Gender" class="glass-select form-control" asp-items="@Model.gender">
+                                <option value="">Select Gender</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="VisitsApientment">Gender:</label>
+                            <select asp-for="VisitsApientment" class="glass-select form-control" asp-items="@Model.ALLApintmentSlots">
+                                <option value="">Select VisitsApientment</option>
+                            </select>
+                            <span asp-validation-for="VisitsApientment" class="text-danger"></span>
+                        </div>
+ 
+
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            @if (Model != null || Model.Id ==default)
+                            {
+                                <text>Add Apiontment</text>
+
+                            }
+                            else
+                            {
+                                <text>Edit</text>
+
+                            }
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize Select2 on the gender select element
+            $('.glass-select').select2();
+
+            // // Handle form submission
+            // $('#saveDoctorForm').submit(function (event) {
+            //     event.preventDefault(); // Prevent default form submission
+
+            //     // Serialize form data
+            //     var formData = $(this).serialize();
+
+            //     // Submit form using AJAX
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: $(this).attr('action'),
+            //         data: formData,
+            //         success: function (data) {
+            //             // Show success message using SweetAlert
+            //             swal("Success!", data.message, "success");
+            //         },
+            //         error: function (xhr) {
+            //             // Show error message using SweetAlert
+            //             swal("Error!", xhr.responseText, "error");
+            //         }
+            //     });
+            // });
+        });
+    </script>
+}
+
+<style>
+    body {
+        background-color: #e6ffe6; /* Light green background */
+    }
+
+    .glass-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-input {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        border-bottom: 2px solid #00cc99; /* Green border for inputs */
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+</style>

@@ -16,6 +16,8 @@ namespace Clincic.DataAccesslayer
               Visisttype = VisitsVm.Visisttype,  
                VisitStutus = VisitsVm.VisitStutus,
                 VisitsApientment = VisitsVm.VisitsApientment,   
+                 DoctorId = VisitsVm.doctorid,   
+                patientid = VisitsVm.patientid,   
 
                      
                     

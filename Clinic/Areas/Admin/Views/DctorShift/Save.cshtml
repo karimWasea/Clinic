@@ -47,13 +47,15 @@
 
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary">
-                            @if (Model != null && Model.Id != null)
+                            @if (Model != null || Model.Id == default)
                             {
-                                <text>Edit</text>
+                                <text>Add New</text>
+
                             }
                             else
                             {
-                                <text>Add New</text>
+                                <text>Edit</text>
+
                             }
                         </button>
                     </div>

@@ -19,16 +19,16 @@
                     <div asp-validation-summary="ModelOnly"></div>
 
                     @Html.AntiForgeryToken()
-                    <div class="form-group col-md-8">
+                 @*    <div class="form-group col-md-8">
                         <label asp-for="Name">Username:</label>
                         <input asp-for="Name" class="glass-input form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
+                    </div> *@
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label asp-for="phonenumber">phonenumber:</label>
-                            <input asp-for="phonenumber" class="glass-input form-control" />
-                            <span asp-validation-for="phonenumber" class="text-danger"></span>
+                            <label asp-for="Name">phonenumber:</label>
+                            <input asp-for="Name" class="glass-input form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -117,13 +117,15 @@
 
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary">
-                            @if (Model != null && Model.Id != null)
+                            @if (Model != null || Model.Id == default)
                             {
-                                <text>Edit</text>
+                                <text>Add New</text>
+
                             }
                             else
                             {
-                                <text>Add New</text>
+                                <text>Edit</text>
+
                             }
                         </button>
                     </div>

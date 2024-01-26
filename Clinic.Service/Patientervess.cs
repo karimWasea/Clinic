@@ -34,13 +34,17 @@ public class PatienteServess : PaginationHelper<VisitsVm>, IPatient
         {
             var PatientModel = Patient.Clone(PatientVm);
 
-            if (PatientVm.Id == null || PatientVm.Id==default)
+            if (PatientVm.patientid == null || PatientVm.patientid==default )
             {
-                _BaseServess._context.Patients.Add(PatientModel);
+               var SavedEntity=  _BaseServess._context.Patients.Add(PatientModel);
+
+                PatientVm.patientid=SavedEntity.Entity.Id;
             }
             else
             {
-               _BaseServess. _context.Patients.Update(PatientModel);
+                var SavedEntity = _BaseServess. _context.Patients.Update(PatientModel);
+                PatientVm.patientid = SavedEntity.Entity.Id;
+
             }
 
             _BaseServess.ContexSaveChang();
@@ -63,7 +67,7 @@ public class PatienteServess : PaginationHelper<VisitsVm>, IPatient
                     Address = Patients.Address,
                     Email = Patients.Email,
                     Age = Patients.Age,
-                    Name = Patients.Name,
+                    patientName = Patients.Name,
                     PhoneNumber = Patients.PhoneNumber,
                     Gender = Patients.Gender,
                     NationalID = Patients.NationalID,

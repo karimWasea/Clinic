@@ -6,7 +6,9 @@ namespace Clinic.Abstract
     {
         public List<SelectListItem> Gender();
 
-        public List<SelectListItem> AvailableAppointments(Guid doctorId, int chosenDayOffset = 5);
+        public List<SelectListItem> AvailableAppointments(Guid doctorId);
+        public List<SelectListItem> VisitStutus();
+        public List<SelectListItem> VisitType( );
         public IQueryable<SelectListItem> AllCliniCs();
         public IQueryable<SelectListItem> AllShifts();
 

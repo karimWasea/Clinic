@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="PagedList" Version="1.17.0" />
-    <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
-  </ItemGroup>
-
 </Project>

@@ -13,5 +13,7 @@ namespace Clinic.Abstract
 {
     public interface IDoctorSHifts: IRepository<DoctorSHiftsVm>
     {
+        public string GetdoctorName(Guid Doctorid);
+
      }
 }

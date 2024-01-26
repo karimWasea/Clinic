@@ -45,6 +45,16 @@ namespace Clinic.Service
                 Text = x.clinicName
             }).OrderBy(c => c.Text).AsNoTracking();
             return applicationuser;
+        }    
+        
+        public IQueryable<SelectListItem>  AllShifts()
+        {
+            IQueryable<SelectListItem>? applicationuser = _applicationDBcontext.SHifts.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).OrderBy(c => c.Text).AsNoTracking();
+            return applicationuser;
         }
         public List<SelectListItem> AvailableAppointments(Guid doctorId, int chosenDayOffset = 5)
         {

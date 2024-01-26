@@ -1,4 +1,6 @@
-﻿using Clinic.Abstract;
+﻿using Clincic.DataAccesslayer;
+
+using Clinic.Abstract;
  using Clinic.Service;
 
 using Clinicss.Models;
@@ -26,44 +28,52 @@ namespace Clinic.Areas.Admin.Controllers
             return View();
         }
 
-      
 
-        // GET: ClinicController/Create
-        public ActionResult Save(Guid id )
+        public ActionResult Save(Guid id , Guid Doctorid)
         {
 
 
-            if (id == null)
+            if (id == null || id == default)
             {
-                return View();
+                var AddDoctorSHiftsVm = new DoctorSHiftsVm();
+                AddDoctorSHiftsVm.DoctorId=Doctorid;
+                AddDoctorSHiftsVm.DoctorName=_UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
+                AddDoctorSHiftsVm.ALLShifts = _UnitOfWork._lookupServess.AllShifts();
+                 return View(AddDoctorSHiftsVm);
 
             }
             else
             {
-                return View(_UnitOfWork._Clinic.GetById(id));
+                var UpdatedDoctorSHiftsVm = _UnitOfWork._doctotshifts.GetById(id);
+                UpdatedDoctorSHiftsVm.DoctorName = _UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
+                UpdatedDoctorSHiftsVm.ALLShifts = _UnitOfWork._lookupServess.AllShifts();
+                return View(UpdatedDoctorSHiftsVm);
 
 
             }
         }
-
-        // POST: ClinicController/Create
+        // GET: ClinicController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(ClinicVm clinic)
+        public ActionResult Save(DoctorSHiftsVm  doctorSHiftsVm)
         {
             try
             {
+               
+
                 if (ModelState.IsValid)
                 {
-                   
-                    _UnitOfWork._Clinic.Save(clinic);
-                    TempData["Message"] = $" successfully!";
+
+                    _UnitOfWork._doctotshifts.Save(doctorSHiftsVm);
+                    TempData["Message"] = $" Successfully  ";
                     TempData["MessageType"] = "Save";
 
-                    return View();
+                    return View(doctorSHiftsVm);
 
                 }
-                return View(clinic);
+                doctorSHiftsVm.DoctorName = _UnitOfWork._doctotshifts.GetdoctorName(doctorSHiftsVm.DoctorId);
+                doctorSHiftsVm.ALLShifts = _UnitOfWork._lookupServess.AllShifts();
+                return View(doctorSHiftsVm);
 
             }
             catch
@@ -71,6 +81,9 @@ namespace Clinic.Areas.Admin.Controllers
                 return View();
             }
         }
+
+
+  
  
          
       

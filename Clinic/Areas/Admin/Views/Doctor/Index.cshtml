@@ -13,101 +13,102 @@
     </div>
     <div class="panel-body">
         <form asp-action="Index" method="get" class="form-inline">
-          
             <div class="form-group">
-                <input type="text" name="FilterBy" value="@ViewBag.Search" class="form-control" id="search-input"  placeholder="Specialty">
+                <input type="text" name="FilterBy" value="@ViewBag.Search" class="form-control  col-md-5" id="search-input" placeholder="Specialty">
+                <button type="submit" class="btn btn-primary">
+                    Search
+                    <i class="fas fa-search"></i> <!-- Font Awesome icon for search -->
+                </button>
             </div>
-             <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
 </div>
-<a asp-action="ٍSave" class="btn btn-success">Add New Doctor</a>
+<br />
  
+
+<a asp-action="Save" class="btn btn-success">
+    <i class="fas fa-plus"></i> <!-- Font Awesome icon for add -->
+    Add New Doctor
+</a>
+<br />
+<br />
 <div id="search-results">
-
-<table class="table table-hover" style="background-color: lightgreen;">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>National ID</th>
-            <th>Birthdate</th>
-            <th>Start Shift</th>
-            <th>End Shift</th>
-            <th>Gender</th>
-            <th>Salary</th>
-            <th>Title</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Hiring Date</th>
-            <th>Specialty</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var doctor in Model)
-        {
+    <table class="table table-hover" style="background-color: lightgreen;">
+        <thead>
             <tr>
-                <td>@doctor.Name</td>
-                <td>@doctor.Age</td>
-                <td>@doctor.Address</td>
-                <td>@doctor.NationalID</td>
-                <td>@doctor.Birthdate.ToShortDateString()</td>
-                <td>@doctor.StartShif.ToShortTimeString()</td>
-                <td>@doctor.Endshift.ToShortTimeString()</td>
-                <td>@doctor.Gender</td>
-                <td>@doctor.Salary</td>
-                <td>@doctor.Title</td>
-                <td>@doctor.phonenumber</td>
-                <td>@doctor.Email</td>
-                <td>@doctor.HiringDate.ToShortDateString()</td>
-                <td>@doctor.Specialty</td>
-                <td>
-                    <a asp-action="Save" asp-route-id="@doctor.Id" class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@doctor.Id" class="btn btn-danger">Delete</a>
-                </td>
+                <th>Name</th>
+                <th>Start Shift</th>
+                <th>End Shift</th>
+                <th>Gender</th>
+                <th>Title</th>
+                <th>Email</th>
+                <th>Specialty</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
-</div>
+        </thead>
+        <tbody>
+            @foreach (var doctor in Model)
+            {
+                <tr class="patient">
+                    <!-- Add class for JavaScript search functionality -->
+                    <td>@doctor.Name</td>
+                     <td>@doctor.StartShif.ToShortTimeString()</td>
+                    <td>@doctor.Endshift.ToShortTimeString()</td>
+                    <td>@doctor.Gender</td>
+                    <td>@doctor.Title</td>
+                    <td>@doctor.Email</td>
+                    <td>@doctor.Specialty</td>
+                    <td>
+                        <a asp-action="Save" asp-route-id="@doctor.Id" class="btn btn-primary">
+                            <i class="fas fa-edit"></i>  Edit
+                        </a>
 
+                        <a class="btn btn-primary" asp-area="Admin" asp-controller="DctorShift" asp-action="Save"
+                           asp-route-Doctorid="@doctor.Id">
+                           <i class="fas fa-trash"></i> AddShift
+                        </a>
+
+                        <a asp-action="CreatAppiontment" asp-route-id="@doctor.Id" class="btn btn-primary">
+                            <i class="fas fa-trash"></i>  CreatAppiontment
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <partial name="_PaginationPartial" model="Model" />
 
 @section Scripts {
-    @*     <script src="~/js/employeeindex.js"></script>
- *@    <script>
-               // Get the search input element
-               const searchInput = document.getElementById('search-input');
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Include Font Awesome library -->
+    <script>
+        // Get the search input element
+        const searchInput = document.getElementById('search-input');
 
-               // Get the patient rows
-               const patientRows = document.querySelectorAll('.patient');
+        // Get the patient rows
+        const patientRows = document.querySelectorAll('.patient');
 
-               // Function to update the search results
-               function updateSearchResults() {
-                   const searchText = searchInput.value.toLowerCase();
+        // Function to update the search results
+        function updateSearchResults() {
+            const searchText = searchInput.value.toLowerCase();
 
-                   patientRows.forEach(patientRow => {
-                       const patientText = patientRow.textContent.toLowerCase();
-                       if (patientText.includes(searchText)) {
-                           patientRow.style.display = 'table-row';
-                       } else {
-                           patientRow.style.display = 'none';
-                       }
-                   });
-               }
+            patientRows.forEach(patientRow => {
+                const patientText = patientRow.textContent.toLowerCase();
+                if (patientText.includes(searchText)) {
+                    patientRow.style.display = 'table-row';
+                } else {
+                    patientRow.style.display = 'none';
+                }
+            });
+        }
 
-               // Add an event listener to the search input to listen for input changes
-               searchInput.addEventListener('input', function () {
-                   updateSearchResults();
-               });
+        // Add an event listener to the search input to listen for input changes
+        searchInput.addEventListener('input', function () {
+            updateSearchResults();
+        });
 
-               // Initial call to populate search results
-               updateSearchResults();
+        // Initial call to populate search results
+        updateSearchResults();
     </script>
-
 }
-
-<!-- Button for Adding a New Doctor -->

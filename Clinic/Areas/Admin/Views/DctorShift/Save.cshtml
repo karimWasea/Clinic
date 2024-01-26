@@ -1,7 +1,126 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Save";
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Cloudscribe.Web.Pagination
+
+@model Clinicss.Models.DoctorSHiftsVm
+
+<partial name="_AlertMessage" />
+
+<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+    <div class="container mt-5 glass-container col-md-7">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1>Manage Shifts</h1>
+
+                <form id="saveDoctorForm" asp-action="Save" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    @Html.AntiForgeryToken()
+
+
+
+
+
+                    <input asp-for="DoctorId"  type="hidden" class="glass-input form-control" readonly />
+
+ 
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DoctorName">Birthdate:</label>
+                            <input asp-for="DoctorName" class="glass-input form-control" readonly />
+                            <span asp-validation-for="DoctorName" class="text-danger"></span>
+                        </div>
+
+                       
+                        <div class="form-group col-md-6">
+                            <label asp-for="SHiftsId">Clinic:</label>
+                            <select asp-for="SHiftsId" class="glass-select form-control" asp-items="@Model.ALLShifts">
+                                <option value="">Select clinic</option>
+                            </select>
+                            <span asp-validation-for="SHiftsId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            @if (Model != null && Model.Id != null)
+                            {
+                                <text>Edit</text>
+                            }
+                            else
+                            {
+                                <text>Add New</text>
+                            }
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize Select2 on the gender select element
+            $('.glass-select').select2();
+
+            // Handle form submission
+            $('#saveDoctorForm').submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // Submit form using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    success: function (data) {
+                        // Show success message using SweetAlert
+                        swal("Success!", data.message, "success");
+                    },
+                    error: function (xhr) {
+                        // Show error message using SweetAlert
+                        swal("Error!", xhr.responseText, "error");
+                    }
+                });
+            });
+        });
+    </script>
 }
 
-<h1>Save</h1>
+<style>
+    body {
+        background-color: #e6ffe6; /* Light green background */
+    }
 
+    .glass-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass-input {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        border-bottom: 2px solid #00cc99; /* Green border for inputs */
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+</style>

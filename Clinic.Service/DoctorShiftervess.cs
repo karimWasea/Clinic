@@ -17,13 +17,14 @@ public class DoctorShiftervess : PaginationHelper<DoctorSHiftsVm>, IDoctorSHifts
 
 {
     BaseServess _BaseServess { get; set; }
+    Idoctor _doctor { get; set; }
         
         
-        public DoctorShiftervess(  BaseServess baseServess) 
+        public DoctorShiftervess(  BaseServess baseServess , DoctorServess doctorServess ) 
     
-    {  
+    {
 
-
+        _doctor= doctorServess; 
         _BaseServess = baseServess;
     }
     public void Save(DoctorSHiftsVm  doctorSHiftsVm)
@@ -47,6 +48,12 @@ public class DoctorShiftervess : PaginationHelper<DoctorSHiftsVm>, IDoctorSHifts
         {
           
         }
+    }
+    public string GetdoctorName(Guid Doctorid)
+    {
+
+
+        return  _doctor.GetById(Doctorid).Name;
     }
 
     public DoctorSHiftsVm GetById(Guid Id)

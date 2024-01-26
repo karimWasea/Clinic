@@ -61,9 +61,7 @@ namespace Clinic.Areas.Admin.Controllers
         {
             try
             {
-                doctor.listGender = _UnitOfWork._lookupServess.Gender();
-                doctor.ALLclinecs = _UnitOfWork._lookupServess.AllCliniCs();
-
+               
                 if (ModelState.IsValid)
                 {
                    
@@ -71,9 +69,12 @@ namespace Clinic.Areas.Admin.Controllers
                     TempData["Message"] = $" Successfully {doctor.Name}";
                     TempData["MessageType"] = "Save";
 
-                    return View(doctor);
+                    return RedirectToAction(nameof(Index));
 
                 }
+                doctor.listGender = _UnitOfWork._lookupServess.Gender();
+                doctor.ALLclinecs = _UnitOfWork._lookupServess.AllCliniCs();
+
                 return View(doctor);
 
             }

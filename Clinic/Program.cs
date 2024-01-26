@@ -19,7 +19,7 @@ namespace Clinic
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<UnitOfWork>();
-            builder.Services.AddTransient<lookupServess>();
+            builder.Services.AddScoped<lookupServess>();
             builder.Services.AddTransient<BaseServess>();
             builder.Services.AddTransient<DoctorServess>();
             builder.Services.AddTransient<ClinicServess>();

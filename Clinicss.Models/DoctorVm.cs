@@ -38,6 +38,9 @@ namespace Clinicss.Models
         public string Title { get; set; }
         [Required(ErrorMessage = "is requred")]
 
+        public string phonenumber { get; set; }
+        [Required(ErrorMessage = "is requred")]
+
         public string Email { get; set; }
         [Required(ErrorMessage = "is requred")]
 

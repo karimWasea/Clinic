@@ -15,11 +15,14 @@ namespace Clincic.DataAccesslayer
              Id = doctor.Id,
                   Address = doctor.Address,    
                 Age = doctor.Age,       
-                Birthdate = doctor.Birthdate,  
-                
+                Birthdate = doctor.Birthdate, 
+
+                PhoneNumber = doctor.phonenumber,
                     Gender = doctor.Gender,   
-                 Name = doctor.Name, NationalID = doctor.NationalID,
+                 Name = doctor.Name,
+                NationalID = doctor.NationalID,
                 Salary = doctor.Salary,  
+                 
                 Specialty = doctor.Specialty, 
                  Email = doctor.Email,
                   HiringDate = doctor.HiringDate,

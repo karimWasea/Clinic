@@ -65,7 +65,7 @@ namespace Clinic.Areas.Admin.Controllers
                     TempData["Message"] = $" Successfully {doctor.Name}";
                     TempData["MessageType"] = "Save";
 
-                    return View();
+                    return View(doctor);
 
                 }
                 return View(doctor);

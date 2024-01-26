@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clincic.DataAccesslayer
 {
-    public class SHifts : BaseEntity
+    public   partial class SHifts : BaseEntity
     {
         public string Name { get; set; }
         public DateTime StartShift { get; set; }

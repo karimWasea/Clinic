@@ -23,6 +23,11 @@ namespace Clinic
             builder.Services.AddTransient<BaseServess>();
             builder.Services.AddTransient<DoctorServess>();
             builder.Services.AddTransient<ClinicServess>();
+            builder.Services.AddTransient<PatienteServess>();
+            builder.Services.AddTransient<DoctorServess>();
+            builder.Services.AddTransient<SHiftsServess>();
+            builder.Services.AddTransient<VisitServess>();
+            builder.Services.AddTransient<DoctorShiftervess>();
 
 
             var app = builder.Build();

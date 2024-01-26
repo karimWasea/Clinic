@@ -1,21 +1,29 @@
-﻿ 
+﻿
+
 using Clinicss.Models;
 
 namespace Clincic.DataAccesslayer
 {
-    public  partial class Clinic  
+    public  partial class Doctor  
     {
 
-       public static Clinic Clone(ClinicVm clinicVm) {
+       public static Doctor Clone(DoctorVm doctor) {
 
 
-            return new Clinic { 
-             Id = clinicVm.Id,
-                 clinicName = clinicVm.clinicName,
-                  isOpen = clinicVm.isOpen, 
-                    numberOfDoctors = clinicVm.numberOfDoctors,
-                     location = clinicVm.location   
-
+            return new Doctor
+            { 
+             Id = doctor.Id,
+                  Address = doctor.Address,    
+                Age = doctor.Age,       
+                Birthdate = doctor.Birthdate,  
+                
+                Contractpath = doctor.Contractpath,
+                   Gender = doctor.Gender,   
+                Imgpath = doctor.Imgpath   ,
+                Name = doctor.Name, NationalID = doctor.NationalID,
+                Salary = doctor.Salary,  
+                Specialty = doctor.Specialty,    
+                    
 
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clinicss.Models
 {
-    public enum VisitType
+    public enum VisitStutus
     {
         RegularCheckup,
         Emergency,

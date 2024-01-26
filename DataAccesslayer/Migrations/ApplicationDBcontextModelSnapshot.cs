@@ -53,16 +53,10 @@ namespace Clinic.DataAccesslayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DoctorId1")
+                    b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("SHiftsId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("SHiftsId1")
+                    b.Property<Guid>("SHiftsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("VisitsId")
@@ -70,9 +64,9 @@ namespace Clinic.DataAccesslayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId1");
+                    b.HasIndex("DoctorId");
 
-                    b.HasIndex("SHiftsId1");
+                    b.HasIndex("SHiftsId");
 
                     b.HasIndex("VisitsId");
 
@@ -259,13 +253,13 @@ namespace Clinic.DataAccesslayer.Migrations
                 {
                     b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
                         .WithMany("DoctorSHifts")
-                        .HasForeignKey("DoctorId1")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Clincic.DataAccesslayer.SHifts", "SHifts")
                         .WithMany("DoctorShifts")
-                        .HasForeignKey("SHiftsId1")
+                        .HasForeignKey("SHiftsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

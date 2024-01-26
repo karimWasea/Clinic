@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Clincic.DataAccesslayer
 {
-    public class Patient : Person
-    {
+    public partial class Patient : Person
+    {   
+       
         public virtual ICollection<Visits>  Visits { get; set; }
 
         public Doctor Doctor { get; set; }

@@ -30,8 +30,32 @@ namespace Clinic.Service
         }
         public DoctorVm GetById(Guid Id)
         {
-            throw new NotImplementedException();
-        }
+
+           return  _BaseServess._context.Doctor
+                .Include(doctor => doctor.DoctorSHifts)
+                    .ThenInclude(doctorShifts => doctorShifts.SHifts)
+                .Where(doctor =>doctor.Id == Id)    .
+                    
+
+           Select(doctor => new DoctorVm
+            {
+                Id = doctor.Id,
+                Specialty = doctor.Specialty,
+                Address = doctor.Address,
+                NationalID = doctor.NationalID,
+                Name = doctor.Name,
+                Age = doctor.Age,
+                Birthdate = doctor.Birthdate,
+                Salary = doctor.Salary,
+                Imgpath = doctor.Imgpath,
+                Gender = doctor.Gender,
+                Contractpath = doctor.Contractpath,
+                Endshift = doctor.DoctorSHifts.Select(ds => ds.SHifts.EndShift).FirstOrDefault(),
+                StartShif = doctor.DoctorSHifts.Select(ds => ds.SHifts.StartShift).FirstOrDefault()
+            }).FirstOrDefault();
+ 
+        
+    }
 
         public void Save(DoctorVm entity)
         {

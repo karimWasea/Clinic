@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.DataAccesslayer.Migrations
 {
     [DbContext(typeof(ApplicationDBcontext))]
-    [Migration("20240124225545_initi3")]
-    partial class initi3
+    [Migration("20240126111742_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,33 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.ToTable("Clinic");
                 });
 
-            modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
+            modelBuilder.Entity("Clincic.DataAccesslayer.DoctorSHifts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SHiftsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("VisitsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("SHiftsId");
+
+                    b.HasIndex("VisitsId");
+
+                    b.ToTable("DoctorSHifts");
+                });
+
+            modelBuilder.Entity("Clincic.DataAccesslayer.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,15 +92,24 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ClinicId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Contractpath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("HiringDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Imgpath")
                         .IsRequired()
@@ -95,47 +130,17 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Specialty")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClinicId");
+                    b.ToTable("Employees");
 
-                    b.ToTable("Doctor");
-                });
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
 
-            modelBuilder.Entity("Clincic.DataAccesslayer.DoctorSHifts", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DoctorId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("SHiftsId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("SHiftsId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("VisitsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId1");
-
-                    b.HasIndex("SHiftsId1");
-
-                    b.HasIndex("VisitsId");
-
-                    b.ToTable("DoctorSHifts");
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Clincic.DataAccesslayer.Patient", b =>
@@ -156,6 +161,10 @@ namespace Clinic.DataAccesslayer.Migrations
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -229,22 +238,31 @@ namespace Clinic.DataAccesslayer.Migrations
 
             modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
                 {
-                    b.HasOne("Clincic.DataAccesslayer.Clinic", null)
-                        .WithMany("Doctors")
-                        .HasForeignKey("ClinicId");
+                    b.HasBaseType("Clincic.DataAccesslayer.Employee");
+
+                    b.Property<Guid>("ClinicId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Specialty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("ClinicId");
+
+                    b.HasDiscriminator().HasValue("Doctor");
                 });
 
             modelBuilder.Entity("Clincic.DataAccesslayer.DoctorSHifts", b =>
                 {
                     b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
                         .WithMany("DoctorSHifts")
-                        .HasForeignKey("DoctorId1")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Clincic.DataAccesslayer.SHifts", "SHifts")
                         .WithMany("DoctorShifts")
-                        .HasForeignKey("SHiftsId1")
+                        .HasForeignKey("SHiftsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -279,18 +297,20 @@ namespace Clinic.DataAccesslayer.Migrations
                         .HasForeignKey("PatientId");
                 });
 
+            modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
+                {
+                    b.HasOne("Clincic.DataAccesslayer.Clinic", "Clinic")
+                        .WithMany("Doctors")
+                        .HasForeignKey("ClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clinic");
+                });
+
             modelBuilder.Entity("Clincic.DataAccesslayer.Clinic", b =>
                 {
                     b.Navigation("Doctors");
-                });
-
-            modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
-                {
-                    b.Navigation("DoctorSHifts");
-
-                    b.Navigation("Patients");
-
-                    b.Navigation("Visits");
                 });
 
             modelBuilder.Entity("Clincic.DataAccesslayer.Patient", b =>
@@ -306,6 +326,15 @@ namespace Clinic.DataAccesslayer.Migrations
             modelBuilder.Entity("Clincic.DataAccesslayer.Visits", b =>
                 {
                     b.Navigation("DoctorShifts");
+                });
+
+            modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
+                {
+                    b.Navigation("DoctorSHifts");
+
+                    b.Navigation("Patients");
+
+                    b.Navigation("Visits");
                 });
 #pragma warning restore 612, 618
         }

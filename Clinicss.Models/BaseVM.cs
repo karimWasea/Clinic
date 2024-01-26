@@ -2,8 +2,10 @@
 {
     public class BaseVM
     {
-        public Guid Id { get; set; }
+        public int? PagNumber { get; set; }
 
+        public Guid Id { get; set; }
+        public string ActionName { get; set; }  
     }
 
 }

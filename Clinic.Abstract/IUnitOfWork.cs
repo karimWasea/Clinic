@@ -6,9 +6,9 @@ namespace Clinic.Abstract;
     IlookupServess _lookupServess { get; }
      IBaseServess _BaseServess { get; }
      IClinic _Clinic { get; }
-  
- 
-    }
+    Idoctor _Idoctor { get; }   
+
+}
 
 
 

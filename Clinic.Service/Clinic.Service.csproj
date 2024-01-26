@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Clinic.Abstract\Clinic.Abstract.csproj" />
     <ProjectReference Include="..\DataAccesslayer\Clinic.DataAccesslayer.csproj" />
+    <ProjectReference Include="..\Utalieties\Utalieties.csproj" />
   </ItemGroup>
 
 </Project>

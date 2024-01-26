@@ -1,7 +1,5 @@
 ﻿using Clinic.Abstract;
  
-using ClinicUtilities;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +10,8 @@ namespace Clinic.Service;
 using Clincic.DataAccesslayer;
 
 using Clinicss.Models;
+
+using Utalieties;
 
 public class ClinicServess : PaginationHelper<ClinicVm>, IClinic
 

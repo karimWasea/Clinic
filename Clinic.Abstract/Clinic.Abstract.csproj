@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Clinicss.Models\Clinicss.Models.csproj" />
+    <ProjectReference Include="..\DataAccesslayer\Clinic.DataAccesslayer.csproj" />
   </ItemGroup>
 
 </Project>

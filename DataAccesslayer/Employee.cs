@@ -14,9 +14,10 @@ public class Employee :Person
       public string Imgpath { get; set; }
       public string Contractpath { get; set; }
       public string Title { get; set; }
+      public string Email { get; set; }
       public DateTime HiringDate { get; set; }
     public virtual  Clinic  Clinic { get; set; }
 
+ 
 
-  
 }

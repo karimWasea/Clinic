@@ -40,7 +40,7 @@ namespace Clinic.Areas.Admin.Controllers
             }
             else
             {
-                return View();
+                return View(_UnitOfWork._Clinic.GetById(id));
 
 
             }
@@ -49,7 +49,7 @@ namespace Clinic.Areas.Admin.Controllers
         // POST: ClinicController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(ClinicVm  clinic)
+        public ActionResult Save(ClinicVm clinic)
         {
             try
             {

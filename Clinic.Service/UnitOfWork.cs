@@ -11,12 +11,14 @@ namespace Clinic.Service
         public IlookupServess _lookupServess { get; }
         public IBaseServess _BaseServess { get; }
         public IClinic _Clinic { get; }
+        public Idoctor _Idoctor { get; }
 
-        public UnitOfWork(ApplicationDBcontext  dBcontext,lookupServess lookupServess , BaseServess baseServess , ClinicServess clinicServess) {
+        public UnitOfWork(ApplicationDBcontext  dBcontext,lookupServess lookupServess , BaseServess baseServess , ClinicServess clinicServess , DoctorServess doctorServess) {
             _Clinic = clinicServess;
             _BaseServess = baseServess; 
              _context = dBcontext;
-            _lookupServess=lookupServess;
+            _Idoctor = doctorServess;
+            _lookupServess =lookupServess;
         }
 
 

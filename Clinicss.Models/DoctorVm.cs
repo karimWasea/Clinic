@@ -9,6 +9,7 @@ namespace Clinicss.Models
     public class DoctorVm : BaseVM
     {
         public IEnumerable<SelectListItem> listGender { get; set; } = Enumerable.Empty<SelectListItem>();
+        public IEnumerable<SelectListItem> ALLclinecs { get; set; } = Enumerable.Empty<SelectListItem>();
         [Required(ErrorMessage = "is requred")]
         public string Name { get; set; }
         [Required(ErrorMessage = "is requred")]
@@ -21,6 +22,7 @@ namespace Clinicss.Models
         [Required(ErrorMessage = "is requred")]
 
         public string NationalID { get; set; }
+        public string FilterBy { get; set; } =string.Empty; 
         [Required(ErrorMessage = "is requred")]
 
         public DateTime Birthdate { get; set; }
@@ -33,6 +35,7 @@ namespace Clinicss.Models
         [Required(ErrorMessage = "is requred")]
 
         public decimal Salary { get; set; }
+        public Guid clinicid { get; set; }
         [Required(ErrorMessage = "is requred")]
 
         public string Title { get; set; }

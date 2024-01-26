@@ -93,10 +93,10 @@ public IPagedList<DoctorVm> Search(DoctorVm doctorSm)
             .Include(doctor => doctor.DoctorSHifts)
                 .ThenInclude(doctorShifts => doctorShifts.SHifts)
             .Where(doctor =>
-                (doctorSm.Name == null || doctor.Name.Contains(doctorSm.Name))
-                && (doctorSm.Address == null || doctor.Address.Contains(doctorSm.Address))
-                && (doctorSm.NationalID == null || doctor.NationalID.Contains(doctorSm.NationalID))
-                && (doctorSm.Specialty == null || doctor.Specialty.Contains(doctorSm.Specialty)));
+                (doctorSm.FilterBy == null || doctor.Name.Contains(doctorSm.FilterBy)||
+                doctor.Address.Contains(doctorSm.FilterBy)
+                || doctor.NationalID.Contains(doctorSm.FilterBy)
+               || doctor.Specialty.Contains(doctorSm.FilterBy)));
 
          var result = query.Select(doctor => new DoctorVm
         {

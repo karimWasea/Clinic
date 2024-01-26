@@ -19,11 +19,14 @@ namespace Clinic.Areas.Admin.Controllers
         {
 
             _UnitOfWork = unitOfWork;   
-        }   
+        }
         // GET: ClinicController
-        public ActionResult Index()
+        public IActionResult Index(int? pageNuber, string FilterBy)
         {
-            return View();
+            var doctrvm = new DoctorVm();
+            doctrvm.FilterBy = FilterBy;
+            doctrvm.PagNumber = pageNuber;
+            return View(_UnitOfWork._Idoctor.Search(doctrvm));
         }
 
       
@@ -36,6 +39,7 @@ namespace Clinic.Areas.Admin.Controllers
             if (id == null ||id==default)
             { var AddDoctor= new DoctorVm();
                 AddDoctor.listGender = _UnitOfWork._lookupServess.Gender();
+                AddDoctor.ALLclinecs = _UnitOfWork._lookupServess.AllCliniCs();
                 return View(AddDoctor);
 
             }
@@ -43,6 +47,7 @@ namespace Clinic.Areas.Admin.Controllers
             {
                 var UpdatedDoctor = _UnitOfWork._Idoctor.GetById(id);
                 UpdatedDoctor.listGender = _UnitOfWork._lookupServess.Gender();
+                UpdatedDoctor.ALLclinecs = _UnitOfWork._lookupServess.AllCliniCs();
                 return View(UpdatedDoctor);
 
 
@@ -57,6 +62,7 @@ namespace Clinic.Areas.Admin.Controllers
             try
             {
                 doctor.listGender = _UnitOfWork._lookupServess.Gender();
+                doctor.ALLclinecs = _UnitOfWork._lookupServess.AllCliniCs();
 
                 if (ModelState.IsValid)
                 {

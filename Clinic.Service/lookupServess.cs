@@ -5,6 +5,7 @@ using Clinic.Abstract;
 using Clinicss.Models;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Clinic.Service
 {
@@ -36,7 +37,15 @@ namespace Clinic.Service
                                    .ToList();
         }
 
-
+        public IQueryable<SelectListItem>  AllCliniCs()
+        {
+            IQueryable<SelectListItem>? applicationuser = _applicationDBcontext.Clinic.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.clinicName
+            }).OrderBy(c => c.Text).AsNoTracking();
+            return applicationuser;
+        }
         public List<SelectListItem> AvailableAppointments(Guid doctorId, int chosenDayOffset = 5)
         {
             var doctorExistingAppointments = new HashSet<DateTime>(

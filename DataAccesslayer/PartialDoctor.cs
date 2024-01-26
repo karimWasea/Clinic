@@ -27,6 +27,7 @@ namespace Clincic.DataAccesslayer
                  Email = doctor.Email,
                   HiringDate = doctor.HiringDate,
                    Title = doctor.Title
+                   ,  clinicid = doctor.clinicid
                    , 
                     
 

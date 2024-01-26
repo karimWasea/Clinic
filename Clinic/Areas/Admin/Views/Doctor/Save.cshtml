@@ -124,6 +124,25 @@
                         </select>
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
+
+
+
+                    </div>
+                    <div class="row">
+
+                        
+
+
+                        <div class="form-group col-md-9">
+                            <label asp-for="clinicid">Clinic:</label>
+                            <select asp-for="clinicid" class=" glass-select form-control" asp-items="@Model.ALLclinecs">
+                                <option value="">Select clinic</option>
+                            </select>
+                            <span asp-validation-for="clinicid" class="text-danger"></span>
+                        </div>
+
+
+
                     </div>
 
                     <div class="button-group">

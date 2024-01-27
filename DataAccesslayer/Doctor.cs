@@ -16,8 +16,7 @@ namespace Clincic.DataAccesslayer
          public virtual ICollection<Visits> Visits { get; set; }
 
 
-        public virtual ICollection<Patient> Patients { get; set; }
-        public virtual ICollection<DoctorSHifts>  DoctorSHifts { get; set; }
+         public virtual ICollection<DoctorSHifts>  DoctorSHifts { get; set; }
 
     }
 

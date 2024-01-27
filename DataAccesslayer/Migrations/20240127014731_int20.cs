@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Clinic.DataAccesslayer.Migrations
 {
     /// <inheritdoc />
-    public partial class init7 : Migration
+    public partial class int20 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,25 @@ namespace Clinic.DataAccesslayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clinic", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NationalID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,31 +116,6 @@ namespace Clinic.DataAccesslayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Patients",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Patients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Patients_Employees_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "Employees",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Visits",
                 columns: table => new
                 {
@@ -129,7 +123,7 @@ namespace Clinic.DataAccesslayer.Migrations
                     VisitsApientment = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Visisttype = table.Column<int>(type: "int", nullable: false),
                     VisitStutus = table.Column<int>(type: "int", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    patientid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -142,8 +136,8 @@ namespace Clinic.DataAccesslayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Visits_Patients_PatientId",
-                        column: x => x.PatientId,
+                        name: "FK_Visits_Patients_patientid",
+                        column: x => x.patientid,
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -165,19 +159,14 @@ namespace Clinic.DataAccesslayer.Migrations
                 column: "clinicid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_DoctorId",
-                table: "Patients",
-                column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Visits_DoctorId",
                 table: "Visits",
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Visits_PatientId",
+                name: "IX_Visits_patientid",
                 table: "Visits",
-                column: "PatientId");
+                column: "patientid");
         }
 
         /// <inheritdoc />
@@ -193,10 +182,10 @@ namespace Clinic.DataAccesslayer.Migrations
                 name: "SHifts");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "Clinic");

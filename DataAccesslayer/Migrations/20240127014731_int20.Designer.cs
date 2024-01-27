@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.DataAccesslayer.Migrations
 {
     [DbContext(typeof(ApplicationDBcontext))]
-    [Migration("20240126194303_init7")]
-    partial class init7
+    [Migration("20240127014731_int20")]
+    partial class int20
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,9 +149,6 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -172,8 +169,6 @@ namespace Clinic.DataAccesslayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
 
                     b.ToTable("Patients");
                 });
@@ -208,9 +203,6 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Visisttype")
                         .HasColumnType("int");
 
@@ -220,11 +212,14 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("VisitsApientment")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("patientid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("patientid");
 
                     b.ToTable("Visits");
                 });
@@ -261,13 +256,6 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Navigation("SHifts");
                 });
 
-            modelBuilder.Entity("Clincic.DataAccesslayer.Patient", b =>
-                {
-                    b.HasOne("Clincic.DataAccesslayer.Doctor", null)
-                        .WithMany("Patients")
-                        .HasForeignKey("DoctorId");
-                });
-
             modelBuilder.Entity("Clincic.DataAccesslayer.Visits", b =>
                 {
                     b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
@@ -278,7 +266,7 @@ namespace Clinic.DataAccesslayer.Migrations
 
                     b.HasOne("Clincic.DataAccesslayer.Patient", "Patient")
                         .WithMany("Visits")
-                        .HasForeignKey("PatientId")
+                        .HasForeignKey("patientid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -316,8 +304,6 @@ namespace Clinic.DataAccesslayer.Migrations
             modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
                 {
                     b.Navigation("DoctorSHifts");
-
-                    b.Navigation("Patients");
 
                     b.Navigation("Visits");
                 });

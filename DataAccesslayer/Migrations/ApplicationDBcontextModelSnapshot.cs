@@ -146,9 +146,6 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,8 +166,6 @@ namespace Clinic.DataAccesslayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
 
                     b.ToTable("Patients");
                 });
@@ -258,13 +253,6 @@ namespace Clinic.DataAccesslayer.Migrations
                     b.Navigation("SHifts");
                 });
 
-            modelBuilder.Entity("Clincic.DataAccesslayer.Patient", b =>
-                {
-                    b.HasOne("Clincic.DataAccesslayer.Doctor", null)
-                        .WithMany("Patients")
-                        .HasForeignKey("DoctorId");
-                });
-
             modelBuilder.Entity("Clincic.DataAccesslayer.Visits", b =>
                 {
                     b.HasOne("Clincic.DataAccesslayer.Doctor", "Doctor")
@@ -313,8 +301,6 @@ namespace Clinic.DataAccesslayer.Migrations
             modelBuilder.Entity("Clincic.DataAccesslayer.Doctor", b =>
                 {
                     b.Navigation("DoctorSHifts");
-
-                    b.Navigation("Patients");
 
                     b.Navigation("Visits");
                 });

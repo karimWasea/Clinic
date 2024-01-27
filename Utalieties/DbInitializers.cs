@@ -38,9 +38,7 @@ namespace Utalieties
             {
                 var clinicData = new List<(string clinicName, int numberOfDoctors, bool isOpen, string location)>
                 {
-                    ("Example Clinic 1", 5, true, "Location 1"),
-                    ("Example Clinic 2", 3, true, "Location 2"),
-                    // Add more clinic data as needed
+                
                 };
 
                 var clinics = new List<Clincic.DataAccesslayer.Clinic>();

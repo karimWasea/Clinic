@@ -31,7 +31,8 @@ namespace Clinic
             builder.Services.AddScoped<VisitServess>();
             builder.Services.AddTransient<DoctorShiftervess>();
             builder.Services.AddTransient<ApintmentSlots>();
- 
+            builder.Services.AddScoped<IDbInitializer, DbInitializers>();
+
 
             var app = builder.Build();
 
@@ -45,6 +46,7 @@ namespace Clinic
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            Dataeding();
 
             app.UseRouting();
 
@@ -74,6 +76,18 @@ namespace Clinic
 
 
             app.Run();
+            void Dataeding()
+            {
+
+
+
+                using (var Scope = app.Services.CreateScope())
+                {
+
+                    var Dbinsalizar = Scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+                    Dbinsalizar.Initialize();
+                }
+            }
         }
     }
 }

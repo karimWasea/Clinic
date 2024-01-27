@@ -22,23 +22,21 @@
                      
                     <input asp-for="DoctorId"  type="hidden" class="glass-input form-control" readonly />
                      
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label asp-for="DoctorName">Birthdate:</label>
+                         <div class="form-group col-md-5">
+                        <label asp-for="DoctorName">Doctor Name:</label>
                             <input asp-for="DoctorName" class="glass-input  " readonly />
                             <span asp-validation-for="DoctorName" class="text-danger"></span>
                         </div>
 
                        
-                        <div class="form-group col-md-6">
-                            <label asp-for="SHiftsId">Clinic:</label>
+                        <div class="form-group col-md-5">
+                            <label asp-for="SHiftsId">Chosee Shift:</label>
                             <select asp-for="SHiftsId" class="glass-select " asp-items="@Model.ALLShifts">
                                 <option value="">Select clinic</option>
                             </select>
                             <span asp-validation-for="SHiftsId" class="text-danger"></span>
                         </div>
-                    </div>
-
+ 
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary mt-4">
                             @if (Model != null || Model.Id == default)
@@ -59,39 +57,4 @@
     </div>
 </div>
 
-@section Scripts {
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Initialize Select2 on the gender select element
-            $('.glass-select').select2();
-
-            // Handle form submission
-            $('#saveDoctorForm').submit(function (event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Serialize form data
-                var formData = $(this).serialize();
-
-                // Submit form using AJAX
-                $.ajax({
-                    type: 'POST',
-                    url: $(this).attr('action'),
-                    data: formData,
-                    success: function (data) {
-                        // Show success message using SweetAlert
-                        swal("Success!", data.message, "success");
-                    },
-                    error: function (xhr) {
-                        // Show error message using SweetAlert
-                        swal("Error!", xhr.responseText, "error");
-                    }
-                });
-            });
-        });
-    </script>
-}
+ 

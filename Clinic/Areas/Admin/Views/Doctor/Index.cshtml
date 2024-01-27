@@ -5,7 +5,7 @@
     Layout = "_Layout";
     ViewData["Title"] = "All Doctors";
 }
-
+<h1>All Doctors</h1>
 <!-- Panel for Searching -->
 <form asp-action="Index" method="get" class="form-inline">
     <div class="form-group row justify-content-between">
@@ -74,34 +74,6 @@
 <partial name="_PaginationPartial" model="Model" />
 
 @section Scripts {
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Include Font Awesome library -->
-    <script>
-        // Get the search input element
-        const searchInput = document.getElementById('search-input');
-
-        // Get the patient rows
-        const patientRows = document.querySelectorAll('.patient');
-
-        // Function to update the search results
-        function updateSearchResults() {
-            const searchText = searchInput.value.toLowerCase();
-
-            patientRows.forEach(patientRow => {
-                const patientText = patientRow.textContent.toLowerCase();
-                if (patientText.includes(searchText)) {
-                    patientRow.style.display = 'table-row';
-                } else {
-                    patientRow.style.display = 'none';
-                }
-            });
-        }
-
-        // Add an event listener to the search input to listen for input changes
-        searchInput.addEventListener('input', function () {
-            updateSearchResults();
-        });
-
-        // Initial call to populate search results
-        updateSearchResults();
-    </script>
+    <script src="~/js/doctor.js"></script>
+   
 }

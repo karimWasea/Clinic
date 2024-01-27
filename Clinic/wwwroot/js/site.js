@@ -1,4 +1,10 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿$(document).ready(function () {
+    try {
+        // Initialize Select2 on the gender select element
+        $('.glass-select').select2();
+    } catch (error) {
+        // Handle the error gracefully
+        console.error('An error occurred while initializing Select2:', error);
+        // You can also perform any specific actions or fallbacks here
+    }
+});

@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 <h1>Mange Clinic</h1>
 
-                <form asp-action="Save" method="post">
+                <form asp-action="Save" method="post" id="saveform ">
                     @Html.AntiForgeryToken()
 
                     <div class="form-row">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="button-group">
+                    <div class="button-group" id=" savedata">
                         <button type="submit" class="btn btn-primary mt-4">
                          
                                 <text>Add New</text>
@@ -59,7 +59,4 @@
         </div>
     </div>
 </div>
-@section Scripts {
-     <link href="~/css/site.css" rel="stylesheet" />
-
-}
+ 

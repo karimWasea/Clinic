@@ -112,6 +112,7 @@ public IPagedList<VisitsVm> Search(VisitsVm VisitSm)
         var query = _BaseServess._context.Visits.Include(p => p.Patient).Include(v=>v.Doctor)
             .Where(Visit =>
                 (VisitSm.FilterBy == null || Visit.Patient.Name.Contains(VisitSm.FilterBy) ||
+                Visit.Doctor.Name.Contains(VisitSm.FilterBy) ||
               Visit.Patient.Address.Contains(VisitSm.FilterBy)||
                   Visit.Patient.Email.Contains(VisitSm.FilterBy)));
 

@@ -148,40 +148,4 @@
     </div>
 </div>
 
-@section Scripts {
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Initialize Select2 on the gender select element
-            $('.glass-select').select2();
-
-            // Handle form submission
-            // $('#saveDoctorForm').submit(function (event) {
-            //     event.preventDefault(); // Prevent default form submission
-
-            //     // Serialize form data
-            //     var formData = $(this).serialize();
-
-            //     // Submit form using AJAX
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: $(this).attr('action'),
-            //         data: formData,
-            //         success: function (data) {
-            //             // Show success message using SweetAlert
-            //             swal("Success!", data.message, "success");
-            //         },
-            //         error: function (xhr) {
-            //             // Show error message using SweetAlert
-            //             swal("Error!", xhr.responseText, "error");
-            //         }
-            //   });
-            // });
-        });
-    </script>
-    <link href="~/css/site.css" rel="stylesheet" />
-}
  

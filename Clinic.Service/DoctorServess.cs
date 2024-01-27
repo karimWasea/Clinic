@@ -94,8 +94,8 @@ public IPagedList<DoctorVm> Search(DoctorVm doctorSm)
                 .ThenInclude(doctorShifts => doctorShifts.SHifts)
             .Where(doctor =>
                 (doctorSm.FilterBy == null || doctor.Name.Contains(doctorSm.FilterBy)||
-                doctor.Address.Contains(doctorSm.FilterBy)
-                || doctor.NationalID.Contains(doctorSm.FilterBy)
+                doctor.Email.Contains(doctorSm.FilterBy)
+                || doctor.Title.Contains(doctorSm.FilterBy)
                || doctor.Specialty.Contains(doctorSm.FilterBy)));
 
          var result = query.Select(doctor => new DoctorVm

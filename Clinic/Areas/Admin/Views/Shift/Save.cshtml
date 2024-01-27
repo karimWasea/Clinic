@@ -23,21 +23,21 @@
                     @Html.AntiForgeryToken()
  
                     <div class="form-row form-group col-md-10">
-                        <div class="form-control glass-input col-md-4">
+                        <div class="  col-md-8">
                             <label asp-for="Name">Shift Name:</label>
-                            <input asp-for="Name" class="form-control" />
+                            <input asp-for="Name" class="glass-input" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
-                        <div class="  glass-input col-md-4">
+                        <div class="    col-md-8">
                             <label asp-for="StartShift">Start Shift:</label>
-                            <input asp-for="StartShift" class="form-control" />
+                            <input asp-for="StartShift" class="glass-input" />
                             <span asp-validation-for="StartShift" class="text-danger"></span>
                         </div>
 
-                        <div class="  glass-input col-md-4">
+                        <div class="   col-md-8">
                             <label asp-for="EndShift">End Shift:</label>
-                            <input asp-for="EndShift" class="form-control" />
+                            <input asp-for="EndShift" class="glass-input" />
                             <span asp-validation-for="EndShift" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,10 +55,4 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-
-    <link href="~/css/site.css" rel="stylesheet" />
-
-}
-  
+ 

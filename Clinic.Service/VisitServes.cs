@@ -77,7 +77,16 @@ namespace Clinic.Service
 
 
         }
-            public void Save(VisitsVm entity)
+        private bool IsPatientExisted(VisitsVm vm)
+        {
+           
+
+            // Check if the patient exists
+            var patient = _BaseServess._context.Patients.FirstOrDefault(patient => patient.Id==vm.patientid);
+            return patient != null && patient.Id == vm.patientid;
+        }
+
+        public void Save(VisitsVm entity)
         {
             try
             {
@@ -87,6 +96,7 @@ namespace Clinic.Service
 
                 if (entity.Id == null || entity.Id == default)
                 {
+                    //if (!IsPatientExisted(entity))
                     _BaseServess._context.Visits.Add(VisitsModel);
                 }
                 else

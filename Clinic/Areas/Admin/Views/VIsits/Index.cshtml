@@ -36,7 +36,8 @@
                 <th>VisitType</th>
                 <th>VisitStuts</th>
                 <th>Address</th>
-                  <th>Actions</th>
+                <th>Edit</th>
+                <th>New Apiontment</th>
             </tr>
         </thead>
         <tbody>
@@ -50,15 +51,21 @@
                      <td>@visit.Gender</td>
                     <td>@visit.Address</td>
                     <td>@visit.Email</td>
-
                     <td>@visit.Visisttype</td>
                     <td>@visit.VisitStutus</td>
                     <td>@visit.Address</td>
                     <td>
-                         
-                        <a asp-action="CreatApiontment" asp-route-Doctorid="@visit.doctorid" asp-route-id="@visit.Id" class="btn btn-primary">
-                            <i class="fas fa-edit"></i>  Edit
+                             <a asp-action="CreatApiontment" asp-route-Doctorid="@visit.doctorid" asp-route-VistId="@visit.Id" class="btn btn-primary">
+                            <i class="fas fa-edit"></i>  Edit Apiontment
                         </a>
+                    </td>
+                    <td>
+                            <a asp-action="CreatApiontment"
+                               asp-route-patientid="@visit.patientid" asp-route-Doctorid="@visit.doctorid" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>    New Apiontment
+                            </a>
+                        
+                      
 
                         
                     </td>

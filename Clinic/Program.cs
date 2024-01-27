@@ -31,8 +31,7 @@ namespace Clinic
             builder.Services.AddScoped<VisitServess>();
             builder.Services.AddTransient<DoctorShiftervess>();
             builder.Services.AddTransient<ApintmentSlots>();
-            builder.Services.AddScoped<IDbInitializer, DbInitializers>();
-
+ 
 
             var app = builder.Build();
 

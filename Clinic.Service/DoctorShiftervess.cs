@@ -53,7 +53,7 @@ public class DoctorShiftervess : PaginationHelper<DoctorSHiftsVm>, IDoctorSHifts
     {
 
 
-        return  _doctor.GetById(Doctorid).Name;
+        return  _BaseServess._context.Doctor.SingleOrDefault(Doctor=>Doctor.Id== Doctorid).Name;
     }
 
     public DoctorSHiftsVm GetById(Guid Id)

@@ -37,11 +37,11 @@ namespace Clinic.Areas.Admin.Controllers
 
 
         // GET: ClinicController/Create
-        public ActionResult CreatApiontment(Guid id , Guid Doctorid)
+        public ActionResult CreatApiontment(Guid VistId , Guid Doctorid , Guid   patientid)
         {
 
 
-            if (id == null || id == default)
+            if ((VistId == null || VistId == default) && patientid== Guid.Empty)
             {
                 var AddVisit = new VisitsVm();
                 AddVisit.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(Doctorid);
@@ -53,18 +53,30 @@ namespace Clinic.Areas.Admin.Controllers
                 return View(AddVisit);
 
             }
-            else
+            else if(VistId != Guid.Empty|| VistId != default)
             {
-                var UpdatedVisit = _UnitOfWork._Visits.GetById(id);
+              
+                var UpdatedVisit = _UnitOfWork._Visits.GetById(VistId);
                 UpdatedVisit.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(Doctorid);
                 UpdatedVisit.doctorName = _UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
-
                 UpdatedVisit.ALLVisitStutus = _UnitOfWork._lookupServess.VisitStutus();
                 UpdatedVisit.ALLVisisttype = _UnitOfWork._lookupServess.VisitType();
                 UpdatedVisit.gender = _UnitOfWork._lookupServess.Gender();
-                //UpdatedVisit.doctorid = Doctorid;
-                return View(UpdatedVisit);
+                 return View(UpdatedVisit);
 
+
+            } 
+            else
+            {
+
+                var ExistePatient = _UnitOfWork._patient.GetById(patientid);
+                ExistePatient.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(Doctorid);
+                ExistePatient.doctorName = _UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
+                ExistePatient.ALLVisitStutus = _UnitOfWork._lookupServess.VisitStutus();
+                ExistePatient.ALLVisisttype = _UnitOfWork._lookupServess.VisitType();
+                ExistePatient.gender = _UnitOfWork._lookupServess.Gender();
+                ExistePatient.doctorid = Doctorid;
+                return View(ExistePatient);
 
             }
         }

@@ -8,26 +8,29 @@ using Clinicss.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using Utalieties;
+
 namespace Clinic.Areas.Admin.Controllers
 {
     [Area("Admin")]
 
     public class VIsitsController : Controller
     {
-        IUnitOfWork _UnitOfWork;
+      private  IUnitOfWork _UnitOfWork;
+       private  ApintmentSlots _apintmentSlots;
 
-        public VIsitsController(UnitOfWork unitOfWork)
+        public VIsitsController(UnitOfWork unitOfWork , ApintmentSlots apintmentSlots  )
 
         {
-
+             _apintmentSlots = apintmentSlots;
             _UnitOfWork = unitOfWork;
         }
         // GET: ClinicController
-        public IActionResult Index(int? pageNuber, string FilterBy)
+        public IActionResult Index(int? page, string FilterBy)
         {
             var VisitsVm = new VisitsVm();
             VisitsVm.FilterBy = FilterBy;
-            VisitsVm.PagNumber = pageNuber;
+            VisitsVm.PagNumber = page;
             return View(_UnitOfWork._Visits.Search(VisitsVm));
         }
 
@@ -41,7 +44,7 @@ namespace Clinic.Areas.Admin.Controllers
             if (id == null || id == default)
             {
                 var AddVisit = new VisitsVm();
-                AddVisit.ALLApintmentSlots = _UnitOfWork._lookupServess.AvailableAppointments(Doctorid);
+                AddVisit.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(Doctorid);
                 AddVisit.ALLVisitStutus = _UnitOfWork._lookupServess.VisitStutus( );
                 AddVisit.ALLVisisttype = _UnitOfWork._lookupServess.VisitType( );
                 AddVisit.gender = _UnitOfWork._lookupServess.Gender();
@@ -53,7 +56,7 @@ namespace Clinic.Areas.Admin.Controllers
             else
             {
                 var UpdatedVisit = _UnitOfWork._Visits.GetById(id);
-                UpdatedVisit.ALLApintmentSlots = _UnitOfWork._lookupServess.AvailableAppointments(Doctorid);
+                UpdatedVisit.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(Doctorid);
                 UpdatedVisit.doctorName = _UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
 
                 UpdatedVisit.ALLVisitStutus = _UnitOfWork._lookupServess.VisitStutus();
@@ -89,7 +92,7 @@ namespace Clinic.Areas.Admin.Controllers
                 visitsVm.gender = _UnitOfWork._lookupServess.Gender();
                 //visitsVm.doctorName = _UnitOfWork._doctotshifts.GetdoctorName(Doctorid);
 
-                visitsVm.ALLApintmentSlots = _UnitOfWork._lookupServess.AvailableAppointments(visitsVm.doctorid);
+                visitsVm.ALLApintmentSlots = _apintmentSlots.AvailableAppointments(visitsVm.doctorid);
  
                 return View(visitsVm);
 

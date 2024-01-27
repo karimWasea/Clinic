@@ -60,7 +60,7 @@ namespace Clinic.Areas.Admin.Controllers
                     TempData["Message"] = $" successfully!";
                     TempData["MessageType"] = "Save";
 
-                    return View();
+                    return RedirectToAction(nameof(Index));
 
                 }
                 return View(clinic);

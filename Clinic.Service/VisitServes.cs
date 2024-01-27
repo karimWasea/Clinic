@@ -52,6 +52,7 @@ namespace Clinic.Service
                         VisitsApientment = Visit.VisitsApientment,
                         patientid = Visit.patientid,
                         doctorid = Visit.DoctorId,
+                        doctorName = Visit.Doctor.Name,
 
 
 
@@ -108,11 +109,11 @@ public IPagedList<VisitsVm> Search(VisitsVm VisitSm)
     {
         int pageNum = VisitSm.PagNumber ?? 1;
 
-        var query = _BaseServess._context.Visits.Include(p => p.Patient)
+        var query = _BaseServess._context.Visits.Include(p => p.Patient).Include(v=>v.Doctor)
             .Where(Visit =>
-                (VisitSm.FilterBy == null || Visit.Patient.Name.Contains(VisitSm.patientName)||
+                (VisitSm.FilterBy == null || Visit.Patient.Name.Contains(VisitSm.FilterBy) ||
               Visit.Patient.Address.Contains(VisitSm.FilterBy)||
-                  Visit.Patient.NationalID.Contains(VisitSm.FilterBy)));
+                  Visit.Patient.Email.Contains(VisitSm.FilterBy)));
 
          var result = query.Select(Visit => new VisitsVm
          {
@@ -130,6 +131,7 @@ public IPagedList<VisitsVm> Search(VisitsVm VisitSm)
              VisitsApientment = Visit.VisitsApientment,
              patientid = Visit.patientid,
              doctorid = Visit.DoctorId,
+             doctorName = Visit.Doctor.Name,
          }).Distinct();  
 
         return Pagination(result, pageNum);

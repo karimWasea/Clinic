@@ -5,6 +5,8 @@ using Clinic.Service;
 
 using Microsoft.EntityFrameworkCore;
 
+using Utalieties;
+
 namespace Clinic
 {
     public class Program
@@ -28,7 +30,8 @@ namespace Clinic
             builder.Services.AddTransient<SHiftsServess>();
             builder.Services.AddScoped<VisitServess>();
             builder.Services.AddTransient<DoctorShiftervess>();
-
+            builder.Services.AddTransient<ApintmentSlots>();
+ 
 
             var app = builder.Build();
 
@@ -47,13 +50,12 @@ namespace Clinic
 
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.MapControllerRoute(
-            //name: "default",
-            //pattern: "{controller=Home}/{action=Index}/{id?}");
+          
 
 
-
-
+            app.MapControllerRoute(
+       name: "HR",
+       pattern: "{area=Admin}/{controller=Doctor}/{action=Index}/{id?}");
 
 
 
@@ -64,9 +66,7 @@ namespace Clinic
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
 
-            //app.MapControllerRoute(
-            //       name: "HR",
-            //       pattern: "{area=Admin}/{controller=Employee}/{action=Index}/{id?}");
+         
 
             app.MapControllerRoute(
                 name: "default",

@@ -68,7 +68,7 @@ namespace Clinic.Areas.Admin.Controllers
                     TempData["Message"] = $" Successfully  ";
                     TempData["MessageType"] = "Save";
 
-                    return View(doctorSHiftsVm);
+                    return RedirectToAction(nameof(Index));
 
                 }
                 doctorSHiftsVm.DoctorName = _UnitOfWork._doctotshifts.GetdoctorName(doctorSHiftsVm.DoctorId);

@@ -26,12 +26,8 @@
 <br />
 
 
-<a asp-action="Save" class="btn btn-success">
-    <i class="fas fa-plus"></i> <!-- Font Awesome icon for add -->
-    Add New visit
-</a>
-<br />
-<br />
+ 
+ 
 <div id="search-results">
     <table class="table table-hover" style="background-color: lightgreen;">
         <thead>
@@ -44,6 +40,7 @@
                 <th>Email</th>
                 <th>VisitType</th>
                 <th>VisitStuts</th>
+                <th>Address</th>
                   <th>Actions</th>
             </tr>
         </thead>
@@ -62,8 +59,9 @@
                     <td>@visit.Visisttype</td>
                     <td>@visit.VisitStutus</td>
                     <td>@visit.Address</td>
-                     <td>
-                        <a asp-action="Save" asp-route-id="@visit.Id" class="btn btn-primary">
+                    <td>
+                         
+                        <a asp-action="CreatApiontment" asp-route-Doctorid="@visit.doctorid" asp-route-id="@visit.Id" class="btn btn-primary">
                             <i class="fas fa-edit"></i>  Edit
                         </a>
 

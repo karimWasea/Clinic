@@ -15,8 +15,7 @@ public class Employee :Person
 
 
     public string Title { get; set; }
-      public string Email { get; set; }
-      public DateTime HiringDate { get; set; }
+       public DateTime HiringDate { get; set; }
     public virtual  Clinic  Clinic { get; set; }
 
  

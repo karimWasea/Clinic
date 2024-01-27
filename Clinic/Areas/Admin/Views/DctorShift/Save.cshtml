@@ -31,14 +31,14 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="DoctorName">Birthdate:</label>
-                            <input asp-for="DoctorName" class="glass-input form-control" readonly />
+                            <input asp-for="DoctorName" class="glass-input  " readonly />
                             <span asp-validation-for="DoctorName" class="text-danger"></span>
                         </div>
 
                        
                         <div class="form-group col-md-6">
                             <label asp-for="SHiftsId">Clinic:</label>
-                            <select asp-for="SHiftsId" class="glass-select form-control" asp-items="@Model.ALLShifts">
+                            <select asp-for="SHiftsId" class="glass-select " asp-items="@Model.ALLShifts">
                                 <option value="">Select clinic</option>
                             </select>
                             <span asp-validation-for="SHiftsId" class="text-danger"></span>
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="button-group">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary mt-4">
                             @if (Model != null || Model.Id == default)
                             {
                                 <text>Add New</text>
@@ -66,6 +66,7 @@
 </div>
 
 @section Scripts {
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -100,29 +101,3 @@
         });
     </script>
 }
-
-<style>
-    body {
-        background-color: #e6ffe6; /* Light green background */
-    }
-
-    .glass-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .glass-input {
-        background-color: rgba(255, 255, 255, 0.5);
-        border: none;
-        border-bottom: 2px solid #00cc99; /* Green border for inputs */
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .button-group {
-        text-align: center;
-    }
-</style>

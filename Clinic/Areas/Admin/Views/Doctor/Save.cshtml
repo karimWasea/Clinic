@@ -13,27 +13,23 @@
     <div class="container mt-5 glass-container col-md-7">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h1>Manage Shifts</h1>
+                <h1>Manage  Doctor</h1>
 
                 <form id="saveDoctorForm" asp-action="Save" method="post">
                     <div asp-validation-summary="ModelOnly"></div>
 
                     @Html.AntiForgeryToken()
-                 @*    <div class="form-group col-md-8">
-                        <label asp-for="Name">Username:</label>
-                        <input asp-for="Name" class="glass-input form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div> *@
+             
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label asp-for="Name">phonenumber:</label>
-                            <input asp-for="Name" class="glass-input form-control" />
+                            <label asp-for="Name">Name:</label>
+                            <input asp-for="Name" class="glass-input  " />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Age">Age:</label>
-                            <input asp-for="Age" class="glass-input form-control" />
+                            <input asp-for="Age" class="glass-input " />
                             <span asp-validation-for="Age" class="text-danger"></span>
                         </div>
                     </div>
@@ -41,13 +37,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Address">Address:</label>
-                            <input asp-for="Address" class="glass-input form-control" />
+                            <input asp-for="Address" class="glass-input  " />
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Specialty">Specialty:</label>
-                            <input asp-for="Specialty" class="glass-input form-control" />
+                            <input asp-for="Specialty" class="glass-input  " />
                             <span asp-validation-for="Specialty" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,13 +51,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="NationalID">NationalID:</label>
-                            <input asp-for="NationalID" class="glass-input form-control" />
+                            <input asp-for="NationalID" class="glass-input  " />
                             <span asp-validation-for="NationalID" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Email">Email:</label>
-                            <input asp-for="Email" class="glass-input form-control" />
+                            <input asp-for="Email" class="glass-input  " />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
@@ -69,13 +65,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Title">Title:</label>
-                            <input asp-for="Title" class="glass-input form-control" />
+                            <input asp-for="Title" class="glass-input  " />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Salary">Salary:</label>
-                            <input asp-for="Salary" class="glass-input form-control" />
+                            <input asp-for="Salary" class="glass-input  " />
                             <span asp-validation-for="Salary" class="text-danger"></span>
                         </div>
                     </div>
@@ -83,13 +79,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Birthdate">Birthdate:</label>
-                            <input asp-for="Birthdate" class="glass-input form-control" />
+                            <input asp-for="Birthdate" class="glass-input  " />
                             <span asp-validation-for="Birthdate" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="phonenumber">phonenumber:</label>
-                            <input asp-for="phonenumber" class="glass-input form-control" />
+                            <input asp-for="phonenumber" class="glass-input  " selected />
                             <span asp-validation-for="phonenumber" class="text-danger"></span>
                         </div>
                     </div>
@@ -97,7 +93,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Gender">Gender:</label>
-                            <select asp-for="Gender" class="glass-select form-control" asp-items="@Model.listGender">
+                            <select asp-for="Gender" class="glass-select  " asp-items="@Model.listGender" selected >
                                 <option value="">Select Gender</option>
                             </select>
                             <span asp-validation-for="Gender" class="text-danger"></span>
@@ -106,7 +102,7 @@
                         <div class="form-group col-md-6">
                             <label asp-for="clinicid" class="control-label">Clinic:</label>
                             <div class="input-group">
-                                <select asp-for="clinicid" class="glass-select form-control" asp-items="@Model.ALLclinecs" data-placeholder="Select clinic">
+                                <select asp-for="clinicid" class="glass-select  " asp-items="@Model.ALLclinecs" data-placeholder="Select clinic" selected>
                                     <option value="">Select clinic</option>
                                 </select>
                             </div>
@@ -116,7 +112,7 @@
                     </div>
 
                     <div class="button-group">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary mt-4">
                             @if (Model != null || Model.Id == default)
                             {
                                 <text>Add New</text>
@@ -169,30 +165,6 @@
             });
         });
     </script>
+    <link href="~/css/site.css" rel="stylesheet" />
 }
 
-<style>
-    body {
-        background-color: #e6ffe6; /* Light green background */
-    }
-
-    .glass-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .glass-input {
-        background-color: rgba(255, 255, 255, 0.5);
-        border: none;
-        border-bottom: 2px solid #00cc99; /* Green border for inputs */
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .button-group {
-        text-align: center;
-    }
-</style>

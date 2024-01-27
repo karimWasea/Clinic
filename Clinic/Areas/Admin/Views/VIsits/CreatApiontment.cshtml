@@ -26,12 +26,12 @@
                     <div class="row">
                              <div class="form-group col-md-6">
                                 <label asp-for="doctorName">Username:</label>
-                                <input asp-for="doctorName" class="glass-input form-control" readonly />
+                                <input asp-for="doctorName" class="glass-input  " readonly />
                                 <span asp-validation-for="doctorName" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <label asp-for="patientName">Address:</label>
-                                <input asp-for="patientName" class="glass-input form-control" />
+                            <label asp-for="patientName">patientName:</label>
+                                <input asp-for="patientName" class="glass-input  " />
                                 <span asp-validation-for="patientName" class="text-danger"></span>
                             </div>
                         </div>
@@ -46,8 +46,8 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label asp-for="PhoneNumber">Specialty:</label>
-                            <input asp-for="PhoneNumber" class="glass-input form-control" />
+                            <label asp-for="PhoneNumber">PhoneNumber:</label>
+                            <input asp-for="PhoneNumber" class="glass-input  " />
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
@@ -55,13 +55,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="NationalID">NationalID:</label>
-                            <input asp-for="NationalID" class="glass-input form-control" />
+                            <input asp-for="NationalID" class="glass-input  " />
                             <span asp-validation-for="NationalID" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Email">Email:</label>
-                            <input asp-for="Email" class="glass-input form-control" />
+                            <input asp-for="Email" class="glass-input  " />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Birthdate">Birthdate:</label>
-                            <input asp-for="Birthdate" class="glass-input form-control" />
+                            <input asp-for="Birthdate" class="glass-input  " />
                             <span asp-validation-for="Birthdate" class="text-danger"></span>
                         </div>
 
@@ -81,7 +81,7 @@
 
                         <div class="form-group col-md-6">
                             <label asp-for="Age">Age:</label>
-                            <input asp-for="Age" class="glass-input form-control" />
+                            <input asp-for="Age" class="glass-input  " />
                             <span asp-validation-for="Age" class="text-danger"></span>
                         </div>
 
@@ -89,16 +89,16 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label asp-for="Visisttype">Visisttype:</label>
-                            <select asp-for="Visisttype" class="glass-select form-control" asp-items="@Model.ALLVisisttype">
+                            <label asp-for="Visisttype">Visist type:</label>
+                            <select asp-for="Visisttype" class="glass-select  " asp-items="@Model.ALLVisisttype">
                                 <option value="">Select Visisttype</option>
                             </select>
                             <span asp-validation-for="VisitStutus" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label asp-for="VisitStutus">VisitStutus:</label>
-                            <select asp-for="VisitStutus" class="glass-select form-control" asp-items="@Model.ALLVisitStutus">
-                                <option value="">Select Stutus</option>
+                            <label asp-for="VisitStutus">Visit Stutus:</label>
+                            <select asp-for="VisitStutus" class="glass-select  " asp-items="@Model.ALLVisitStutus">
+                                <option value="" selected>Select Stutus</option>
                             </select>
                             <span asp-validation-for="Visisttype" class="text-danger"></span>
                         </div>
@@ -110,17 +110,17 @@
 
 
                         <div class="form-group col-md-6">
-                            <label asp-for="Gender">VisitStutus:</label>
-                            <select asp-for="Gender" class="glass-select form-control" asp-items="@Model.gender">
-                                <option value="">Select Gender</option>
+                            <label asp-for="Gender">Gender:</label>
+                            <select asp-for="Gender" class="glass-select  " asp-items="@Model.gender">
+                                <option value="" selected>Select Gender</option>
                             </select>
-                            <span asp-validation-for="Gender" class="text-danger"></span>
+                            <span asp-validation-for="Gender" class="text-danger" selected></span>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label asp-for="VisitsApientment">Gender:</label>
-                            <select asp-for="VisitsApientment" class="glass-select form-control" asp-items="@Model.ALLApintmentSlots">
-                                <option value="">Select VisitsApientment</option>
+                            <label asp-for="VisitsApientment">VisitsApientment:</label>
+                            <select asp-for="VisitsApientment" class="glass-select  " asp-items="@Model.ALLApintmentSlots" >
+                                <option value=""  selected>Select VisitsApientment</option>
                             </select>
                             <span asp-validation-for="VisitsApientment" class="text-danger"></span>
                         </div>
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="button-group">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary mt-4">
                             @if (Model != null || Model.Id ==default)
                             {
                                 <text>Add Apiontment</text>
@@ -182,30 +182,6 @@
             // });
         });
     </script>
+    <link href="~/css/site.css" rel="stylesheet" />
 }
-
-<style>
-    body {
-        background-color: #e6ffe6; /* Light green background */
-    }
-
-    .glass-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .glass-input {
-        background-color: rgba(255, 255, 255, 0.5);
-        border: none;
-        border-bottom: 2px solid #00cc99; /* Green border for inputs */
-        border-radius: 5px;
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .button-group {
-        text-align: center;
-    }
-</style>
+ 

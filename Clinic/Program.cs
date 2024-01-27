@@ -46,8 +46,7 @@ namespace Clinic
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            Dataeding();
-
+ 
             app.UseRouting();
 
             app.UseAuthentication();
@@ -76,18 +75,7 @@ namespace Clinic
 
 
             app.Run();
-            void Dataeding()
-            {
-
-
-
-                using (var Scope = app.Services.CreateScope())
-                {
-
-                    var Dbinsalizar = Scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-                    Dbinsalizar.Initialize();
-                }
-            }
+         
         }
     }
 }

@@ -78,6 +78,16 @@
 <partial name="_PaginationPartial" model="Model" />
 
 @section Scripts {
+    <script>
+        function validateSearch() {
+            var searchInput = document.getElementById("search-input").value;
+            if (searchInput.trim() === "") {
+                alert("Please enter a search query.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
     <script src="~/js/visits.js"></script>
      
 }

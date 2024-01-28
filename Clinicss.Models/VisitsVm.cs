@@ -15,7 +15,7 @@ namespace Clinicss.Models
 
         public DateTime VisitsApientment { get; set; }
         [Required(ErrorMessage = "is requred")]
-
+         
         public Visisttype Visisttype { get; set; }
         [Required(ErrorMessage = "is requred")]
 
@@ -25,6 +25,8 @@ namespace Clinicss.Models
         public string doctorName { get; set; }
         public string FilterBy { get; set; } =string.Empty;
         [Required(ErrorMessage = "is requred")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Age must be a numeric value.")]
+        [Range(0, 120, ErrorMessage = "Age must be between 0 and 120.")]
 
         public int Age { get; set; }
         [Required(ErrorMessage = "is requred")]
@@ -37,9 +39,11 @@ namespace Clinicss.Models
 
         public string Address { get; set; }
         [Required(ErrorMessage = "is requred")]
-
+        [RegularExpression(@"^\d+$", ErrorMessage = "Age must be a numeric value.")]
+ 
         public string NationalID { get; set; }
         [Required(ErrorMessage = "is requred")]
+        [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Invalid phone number")]
 
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "is requred")]
@@ -49,6 +53,7 @@ namespace Clinicss.Models
 
         public Gender Gender { get; set; }
         [Required(ErrorMessage = "is requred")]
+        [EmailAddress(ErrorMessage = "Invalid email format.")]
 
 
         public string Email { get; set; }

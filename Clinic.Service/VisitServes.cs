@@ -77,12 +77,23 @@ namespace Clinic.Service
 
 
         }
-   
 
-        public void Save(VisitsVm entity)
+ 
+private bool IxExistedPatient(VisitsVm entity)
+    {
+        // Assuming _BaseServess._context.Patients is a DbSet or IQueryable of Patient entities
+        var existingPatient = _BaseServess._context.Patients
+            .FirstOrDefault(p => p.PhoneNumber == entity.PhoneNumber || p.NationalID == entity.NationalID || p.Email == entity.Email);
+
+        return existingPatient != null;
+    }
+
+    public void Save(VisitsVm entity)
         {
             try
             {
+               if(! IxExistedPatient(entity))
+
                 _patient.Save(entity);
 
                 var VisitsModel = Visits.Clone(entity);

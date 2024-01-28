@@ -78,46 +78,54 @@ namespace Clinic.Service
 
         }
 
- 
-private bool IxExistedPatient(VisitsVm entity)
-    {
-         var existingPatient = _BaseServess._context.Patients
-            .FirstOrDefault(p => p.PhoneNumber == entity.PhoneNumber || p.NationalID == entity.NationalID || p.Email == entity.Email);
 
-        return existingPatient != null;
-    }
+        private Guid? GetExistingPatientId(VisitsVm entity)
+        {
+            var existingPatient = _BaseServess._context.Patients
+                .FirstOrDefault(p => p.PhoneNumber == entity.PhoneNumber ||
+                                     p.NationalID == entity.NationalID ||
+                                     p.Email == entity.Email);
 
-    public void Save(VisitsVm entity)
+            return existingPatient?.Id;
+        }
+
+        public void Save(VisitsVm entity)
         {
             try
             {
-               if(! IxExistedPatient(entity))
+                var existingPatientId = GetExistingPatientId(entity);
 
-                _patient.Save(entity);
+                if (existingPatientId == null)
+                     _patient.Save(entity);
+                else
+                 entity.patientid = (Guid)existingPatientId;
 
-                var VisitsModel = Visits.Clone(entity);
+                var visitsModel = Visits.Clone(entity);
 
-                if (entity.Id == null || entity.Id == default)
+                if (entity.Id == default || entity.Id == null)
                 {
-                     _BaseServess._context.Visits.Add(VisitsModel);
+                    // Add new visit
+                    _BaseServess._context.Visits.Add(visitsModel);
                 }
                 else
                 {
-                    _BaseServess._context.Visits.Update(VisitsModel);
+                    // Update existing visit
+                    _BaseServess._context.Visits.Update(visitsModel);
                 }
 
                 _BaseServess.ContexSaveChang();
             }
             catch (Exception ex)
             {
-
+                // Handle the exception (e.g., logging)
+                throw; // Rethrow the exception or handle it based on requirements
             }
         }
 
-     
 
- 
-public IPagedList<VisitsVm> Search(VisitsVm VisitSm)
+
+
+        public IPagedList<VisitsVm> Search(VisitsVm VisitSm)
     {
         int pageNum = VisitSm.PagNumber ?? 1;
 

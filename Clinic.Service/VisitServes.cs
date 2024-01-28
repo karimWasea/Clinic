@@ -81,8 +81,7 @@ namespace Clinic.Service
  
 private bool IxExistedPatient(VisitsVm entity)
     {
-        // Assuming _BaseServess._context.Patients is a DbSet or IQueryable of Patient entities
-        var existingPatient = _BaseServess._context.Patients
+         var existingPatient = _BaseServess._context.Patients
             .FirstOrDefault(p => p.PhoneNumber == entity.PhoneNumber || p.NationalID == entity.NationalID || p.Email == entity.Email);
 
         return existingPatient != null;
